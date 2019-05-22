@@ -55,6 +55,7 @@ class ApiIntegrationTest {
             .select("a[href*=magnet:]")
         for (magnet in magnetlinks) {
             val result = SearchResult(
+                "",
                 magnet.attr("href")
             )
             println(result)
