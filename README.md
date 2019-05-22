@@ -1,4 +1,4 @@
-# skullsandbones
+# Skull And Bones
 
 * search magnet links
 * download on synology disk station download manager
