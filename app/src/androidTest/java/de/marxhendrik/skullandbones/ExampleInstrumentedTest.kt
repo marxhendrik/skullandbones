@@ -1,4 +1,4 @@
-package de.marxhendrik.skullsandbones
+package de.marxhendrik.skullandbones
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("de.marxhendrik.skullsandbones", appContext.packageName)
+        assertEquals("de.marxhendrik.skullandbones", appContext.packageName)
     }
 }

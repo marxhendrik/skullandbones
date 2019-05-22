@@ -2,7 +2,7 @@ package de.marxhendrik.skullandbones.magnetsearch.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import de.marxhendrik.skullsandbones.R
+import de.marxhendrik.skullandbones.R
 
 class MagnetSearchActivity : AppCompatActivity() {
 

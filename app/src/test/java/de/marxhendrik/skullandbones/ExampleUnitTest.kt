@@ -1,4 +1,4 @@
-package de.marxhendrik.skullsandbones
+package de.marxhendrik.skullandbones
 
 import org.junit.Test
 
