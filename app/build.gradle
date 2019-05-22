@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    //TODO clean these up
+    //TODO clean these up, read up on api :core module
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
