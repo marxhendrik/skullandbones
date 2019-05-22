@@ -1,6 +1,7 @@
 package de.marxhendrik.skullandbones
 
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
 import org.junit.Ignore
 import org.junit.Test
 
@@ -16,7 +17,7 @@ class ApiIntegrationTest {
 
 
     @Test
-    fun `test the soup`() {
+    fun `play around with jsoup`() {
         val query = "game of thrones"
 
 
@@ -26,58 +27,26 @@ class ApiIntegrationTest {
         val tableRow = doc
             .select("tr")
 
-        println(tableRow)
-
         val tableDeee = tableRow
             .select("td")
 
         println(tableDeee)
-
-        println("################")
-//        val names = tableDeee.select("div").select("a[href]")
-//
-//        for (name in names) {
-//            println(name.getElementsByTag("a").text())
-//        }
-
-        //  FIXME: so how do I make it in one go now?
-
-        //TITLES here
-        tableDeee
-            .flatMap { it.select("div").select("a[href]") }
-            .map { it.getElementsByTag("a").text() }
-            .forEach { println("# $it") }
-
-
-        //LINKS here
-        println("####### parsed links #########")
-        val magnetlinks = tableDeee
-            .select("a[href*=magnet:]")
-        for (magnet in magnetlinks) {
-            val result = SearchResult(
-                "",
-                magnet.attr("href")
-            )
-            println(result)
-        }
-
-//        println(magnetlinks)
-
-//        for (headline in newsHeadlines) {
-//            println(
-//                "%s\n\t%s".format(
-//                    headline.attr("title"), headline.absUrl("href")
-//                )
-//            )
-//        }
-
-        println()
-        println()
-        println()
-        println()
-        println()
-        println()
-        println(magnetlinks)
-
     }
+
+    @Test
+    fun `extract title and magnet link`() {
+        val query = "game of thrones"
+
+        Jsoup.connect("https://top-secret.org/search/$query/0/99/0").get()
+            .select("tr")
+            .select("td")
+            .asSequence()
+            .flatMap { getDivHref(it).zip(getLinks(it)).map { pair -> SearchResult(pair.first, pair.second) } }
+            .forEach { println("# $it") }
+    }
+
+    private fun getLinks(it: Element) = it.select("a[href*=magnet:]").map { it.attr("href") }.asSequence()
+
+    private fun getDivHref(it: Element) =
+        it.select("div").select("a[href]").map { ref -> ref.getElementsByTag("a").text() }.asSequence()
 }
