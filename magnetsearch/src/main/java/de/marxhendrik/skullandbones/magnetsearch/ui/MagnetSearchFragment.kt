@@ -1,7 +1,5 @@
 package de.marxhendrik.skullandbones.magnetsearch.ui
 
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import de.marxhendrik.skullandbones.core.base.BaseFragment
 import de.marxhendrik.skullandbones.magnetsearch.R
 import de.marxhendrik.skullandbones.magnetsearch.di.inject
@@ -11,8 +9,7 @@ import javax.inject.Inject
 class MagnetSearchFragment(override val layoutId: Int = R.layout.fragment_magnet_search) : BaseFragment() {
 
     @Inject
-    lateinit var factory: ViewModelProvider.Factory
-    private val viewModel by viewModels<MagnetSearchViewModel>(factoryProducer = { factory })
+    lateinit var viewModel: MagnetSearchViewModel
 
     override fun onViewCreated() {
         inject()
