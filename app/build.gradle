@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 apply from: '../repositories.gradle'
 apply from: '../testDependencies.gradle'
@@ -33,4 +32,7 @@ android {
 
 dependencies {
     implementation project(":core")
+
+    kapt "com.google.dagger:dagger-compiler:2.21"
+    kapt "com.google.dagger:dagger-android-processor:2.21"
 }

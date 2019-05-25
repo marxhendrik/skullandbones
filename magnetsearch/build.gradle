@@ -1,6 +1,7 @@
 apply plugin: 'com.android.dynamic-feature'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 apply from: '../repositories.gradle'
 apply from: '../testDependencies.gradle'
@@ -25,4 +26,7 @@ dependencies {
     implementation project(':app')
     implementation project(':core')
     implementation 'org.jsoup:jsoup:1.12.1'
+
+    kapt "com.google.dagger:dagger-compiler:2.21"
+    kapt "com.google.dagger:dagger-android-processor:2.21"
 }
