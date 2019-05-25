@@ -11,6 +11,7 @@ class MagnetSearchViewModel(
     private var searchUseCase: MagnetSearchUseCase
 ) : BaseViewModel(executor) {
 
+    // FIXME something something UiController?!
     fun requestResult(callback: (List<SearchResult>) -> Unit) {
         execute(searchUseCase, "John Wick", { result ->
             result.on(

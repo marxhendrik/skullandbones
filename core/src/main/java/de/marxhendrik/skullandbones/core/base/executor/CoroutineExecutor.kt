@@ -15,17 +15,15 @@ class CoroutineExecutor : Executor {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
 
-    override fun <T,R> execute(
-        useCase: UseCase<T,R>,
-        param:T,
+    override fun <T, R> execute(
+        useCase: UseCase<T, R>,
+        param: T,
         callback: (Either<Throwable, R>) -> Unit
     ) {
         ioScope.launch {
             try {
                 val result = useCase(param)
-                uiScope.launch {
-                    callback(Either.Right(result))
-                }
+                uiScope.launch { callback(Either.Right(result)) }
             } catch (t: Throwable) {
                 callback(Either.Left(t))
             }
