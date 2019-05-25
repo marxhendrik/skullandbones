@@ -23,7 +23,7 @@ class ApiIntegrationTest {
 
         //TODO find out how to get the size later
 
-        val doc = Jsoup.connect("https://no-website-i-ever-heard-of.org/search/$query/0/99/0").get()
+        val doc = Jsoup.connect(Urls.baySearch(query)).get()
         println(doc.title())
 
         val tableRow = doc
@@ -40,7 +40,7 @@ class ApiIntegrationTest {
     fun `extract title and magnet link`() {
         val query = "game of thrones"
 
-        Jsoup.connect("https://top-secret.org/search/$query/0/99/0").get()
+        Jsoup.connect(Urls.baySearch(query)).get()
             .select("tr")
             .select("td")
             .asSequence()
