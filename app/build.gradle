@@ -1,22 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 apply from: '../repositories.gradle'
 apply from: '../testDependencies.gradle'
 apply from: '../dependencies.gradle'
+apply from: '../project-config.gradle'
 
 android {
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "de.marxhendrik.skullandbones"
-        minSdkVersion 26
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -26,13 +18,8 @@ android {
 
 
     dynamicFeatures = [":magnetsearch"]
-
-
 }
 
 dependencies {
     implementation project(":core")
-
-    kapt "com.google.dagger:dagger-compiler:2.21"
-    kapt "com.google.dagger:dagger-android-processor:2.21"
 }
