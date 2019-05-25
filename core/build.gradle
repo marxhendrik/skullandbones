@@ -1,8 +1,7 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+
 
 apply from: '../repositories.gradle'
 apply from: '../testDependencies.gradle'
@@ -10,14 +9,18 @@ apply from: '../dependencies.gradle'
 
 android {
     compileSdkVersion 28
+
+
     defaultConfig {
-        applicationId "de.marxhendrik.skullandbones"
         minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,12 +28,4 @@ android {
         }
     }
 
-
-    dynamicFeatures = [":magnetsearch"]
-
-
-}
-
-dependencies {
-    implementation project(":core")
 }

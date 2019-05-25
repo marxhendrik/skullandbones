@@ -1,0 +1,13 @@
+repositories {
+    maven {
+        url "https://maven.google.com"
+    }
+
+    maven {
+        url 'https://jcenter.bintray.com'
+    }
+
+    maven {
+        url 'https://dl.bintray.com/kotlin/kotlin-eap'
+    }
+}
