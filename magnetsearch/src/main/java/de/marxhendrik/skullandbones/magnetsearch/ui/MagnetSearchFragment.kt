@@ -17,25 +17,26 @@ import kotlin.coroutines.suspendCoroutine
 
 class MagnetSearchFragment(override val layoutId: Int = R.layout.fragment_magnet_search) : BaseFragment() {
 
-    val job = Job()
-    val ioScope = CoroutineScope(Dispatchers.IO + job)
-    val uiScope = CoroutineScope(Dispatchers.Main + job)
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val query = "game of thrones"
-
-
-        ioScope.launch {
-            val result = request(query)
-            Log.i("bla", result.toString()) //Timber FIXME
-            uiScope.launch {
-                tv.text = result[0].title
-            }
+        requestResult {
+            tv.text = it[0].title
         }
 
+    }
 
+    private val job = Job()
+    private val ioScope = CoroutineScope(Dispatchers.IO + job)
+    private val uiScope = CoroutineScope(Dispatchers.Main + job)
+
+    private fun requestResult(callback: (List<SearchResult>) -> Unit) {
+        ioScope.launch {
+            val result = request("game of thrones")
+            uiScope.launch {
+                callback(result)
+            }
+        }
     }
 
     override fun onPause() {
