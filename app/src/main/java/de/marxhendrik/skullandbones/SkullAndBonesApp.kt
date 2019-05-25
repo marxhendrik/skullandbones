@@ -6,6 +6,8 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import de.marxhendrik.skullandbones.core.di.CoreComponent
 import de.marxhendrik.skullandbones.core.di.DaggerCoreComponent
+import timber.log.Timber
+import timber.log.Timber.plant
 
 class SkullAndBonesApp : Application() {
 
@@ -14,6 +16,12 @@ class SkullAndBonesApp : Application() {
     companion object {
         fun coreComponent(context: Context) =
             (context.applicationContext as SkullAndBonesApp).coreComponent
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+
+        if (BuildConfig.DEBUG) plant(Timber.DebugTree())
     }
 }
 

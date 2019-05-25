@@ -1,6 +1,5 @@
 package de.marxhendrik.skullandbones.magnetsearch.domain
 
-import android.util.Log
 import de.marxhendrik.skullandbones.core.base.Either
 import de.marxhendrik.skullandbones.magnetsearch.data.Urls
 import kotlinx.coroutines.CoroutineScope
@@ -9,6 +8,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
+import timber.log.Timber
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
@@ -32,8 +32,7 @@ class MagnetSearchUseCase @Inject constructor() {
     // FIXME figure out what happens with Exceptions
     private suspend fun request(query: String): List<SearchResult> {
         return suspendCoroutine { continuation ->
-            Log.i("bla", "try") //Timber FIXME
-
+            Timber.i("try call jsoup")
             try {
                 val result = Jsoup.connect(Urls.baySearch(query)).get()
                     .select("tr")
@@ -42,10 +41,9 @@ class MagnetSearchUseCase @Inject constructor() {
                     .flatMap { getDivHref(it).zip(getLinks(it)).map { pair -> SearchResult(pair.first, pair.second) } }
                     .toList()
 
-                Log.i("bla", "resume") //Timber FIXME
+                Timber.i("resume")
                 continuation.resumeWith(Result.success(result))
             } catch (e: Exception) {
-                Log.e("bla", "error", e) //Timber FIXME
                 continuation.resumeWith(Result.failure(e))
             }
         }

@@ -1,9 +1,9 @@
 package de.marxhendrik.skullandbones.magnetsearch.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import de.marxhendrik.skullandbones.magnetsearch.domain.MagnetSearchUseCase
 import kotlinx.coroutines.Job
+import timber.log.Timber
 import javax.inject.Inject
 
 class MagnetSearchViewModel @Inject constructor(var searchUseCase: MagnetSearchUseCase) : ViewModel() {
@@ -15,7 +15,7 @@ class MagnetSearchViewModel @Inject constructor(var searchUseCase: MagnetSearchU
         searchUseCase.requestResult(job) { either ->
             either.on(
                 failure = {
-                    Log.e("ViewModel", "error", it)
+                    Timber.e(it, "error") //FIXME
                 },
                 success = callback
             )
