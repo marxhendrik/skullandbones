@@ -1,6 +1,7 @@
 package de.marxhendrik.skullandbones.magnetsearch.domain
 
 import android.util.Log
+import de.marxhendrik.skullandbones.core.base.Either
 import de.marxhendrik.skullandbones.magnetsearch.data.Urls
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,17 +18,18 @@ class MagnetSearchUseCase @Inject constructor() {
     private val ioScope = CoroutineScope(Dispatchers.IO + job)
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
-    fun requestResult(parentJob: Job, callback: (List<SearchResult>) -> Unit): Job {
+    fun requestResult(parentJob: Job, callback: (Either<Exception, List<SearchResult>>) -> Unit): Job {
         ioScope.launch(parentJob) {
             val result = request("game of thrones")
             uiScope.launch {
-                callback(result)
+                callback(Either.Right(result))
             }
         }
 
         return job
     }
 
+    // FIXME figure out what happens with Exceptions
     private suspend fun request(query: String): List<SearchResult> {
         return suspendCoroutine { continuation ->
             Log.i("bla", "try") //Timber FIXME

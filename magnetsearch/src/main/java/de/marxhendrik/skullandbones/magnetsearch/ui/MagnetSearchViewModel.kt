@@ -12,11 +12,17 @@ class MagnetSearchViewModel @Inject constructor(var searchUseCase: MagnetSearchU
     private val job = Job()
 
     fun requestResult(callback: (List<MagnetSearchUseCase.SearchResult>) -> Unit) {
-        searchUseCase.requestResult(job, callback)
+        searchUseCase.requestResult(job) { either ->
+            either.on(
+                failure = {
+                    Log.e("ViewModel", "error", it)
+                },
+                success = callback
+            )
+        }
     }
 
     override fun onCleared() {
-        Log.i("ViewModel", "onCleared")//FIXME timber
         job.cancel()
     }
 
