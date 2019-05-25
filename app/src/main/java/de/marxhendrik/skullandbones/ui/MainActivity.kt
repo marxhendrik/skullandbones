@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import de.marxhendrik.skullandbones.R
-import de.marxhendrik.skullandbones.navigation.magnetSearchFragment
+import de.marxhendrik.skullandbones.core.navigation.NavigationActivity
+import de.marxhendrik.skullandbones.core.navigation.magnetSearchFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
