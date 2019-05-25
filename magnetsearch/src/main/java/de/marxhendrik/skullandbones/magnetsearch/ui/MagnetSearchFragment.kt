@@ -14,6 +14,7 @@ class MagnetSearchFragment(override val layoutId: Int = R.layout.fragment_magnet
     override fun onViewCreated() {
         inject()
 
+        // FIXME check LiveData
         viewModel.requestResult {
             tv.text = it[0].title
         }
