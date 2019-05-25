@@ -10,7 +10,16 @@ abstract class BaseFragment : Fragment() {
 
     abstract val layoutId: Int
 
+    protected var contentView: View? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(layoutId, container, false)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        contentView = view
+        onViewCreated()
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    open fun onViewCreated() {}
 }
