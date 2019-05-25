@@ -1,4 +1,4 @@
-package de.marxhendrik.skullandbones.core.base
+package de.marxhendrik.skullandbones.core.base.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
