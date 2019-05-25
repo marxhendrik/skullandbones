@@ -6,6 +6,7 @@ import android.view.View
 import de.marxhendrik.skullandbones.core.base.BaseFragment
 import de.marxhendrik.skullandbones.magnetsearch.R
 import de.marxhendrik.skullandbones.magnetsearch.data.Urls
+import de.marxhendrik.skullandbones.magnetsearch.di.inject
 import kotlinx.android.synthetic.main.fragment_magnet_search.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +19,7 @@ import kotlin.coroutines.suspendCoroutine
 class MagnetSearchFragment(override val layoutId: Int = R.layout.fragment_magnet_search) : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        inject()
         super.onViewCreated(view, savedInstanceState)
 
         requestResult {
