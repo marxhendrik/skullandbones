@@ -20,6 +20,7 @@ class ApiIntegrationTest {
     fun `play around with jsoup`() {
         val query = "game of thrones"
 
+        //TODO find out how to get the size later
 
         val doc = Jsoup.connect("https://no-website-i-ever-heard-of.org/search/$query/0/99/0").get()
         println(doc.title())
@@ -33,6 +34,7 @@ class ApiIntegrationTest {
         println(tableDeee)
     }
 
+    //FIXME clean up literals
     @Test
     fun `extract title and magnet link`() {
         val query = "game of thrones"

@@ -11,7 +11,7 @@
     </dist:module>
 
     <application tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchActivity"/>
+        <activity android:name="de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchFragment"/>
     </application>
 
 </manifest>
