@@ -17,11 +17,7 @@ class MagnetSearchUseCase @Inject constructor() {
     private val ioScope = CoroutineScope(Dispatchers.IO + job)
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
-    fun requestResult(
-        parentJob: Job,
-        callback: (List<SearchResult>) -> Unit
-    ): Job {
-
+    fun requestResult(parentJob: Job, callback: (List<SearchResult>) -> Unit): Job {
         ioScope.launch(parentJob) {
             val result = request("game of thrones")
             uiScope.launch {
