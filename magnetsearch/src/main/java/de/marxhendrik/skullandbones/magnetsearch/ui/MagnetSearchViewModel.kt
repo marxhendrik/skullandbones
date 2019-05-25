@@ -4,11 +4,10 @@ import de.marxhendrik.skullandbones.core.base.executor.Executor
 import de.marxhendrik.skullandbones.core.base.viewmodel.BaseViewModel
 import de.marxhendrik.skullandbones.magnetsearch.domain.MagnetSearchUseCase
 import timber.log.Timber
-import javax.inject.Inject
 
-class MagnetSearchViewModel @Inject constructor(
+class MagnetSearchViewModel(
     executor: Executor,
-    var searchUseCase: MagnetSearchUseCase
+    private var searchUseCase: MagnetSearchUseCase
 ) : BaseViewModel(executor) {
 
     fun requestResult(callback: (List<MagnetSearchUseCase.SearchResult>) -> Unit) {

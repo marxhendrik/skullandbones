@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class CoroutineExecutor : Executor {
 
@@ -33,6 +34,7 @@ class CoroutineExecutor : Executor {
 
 
     override fun onCleared() {
+        Timber.i("onCleared")
         job.cancel()
     }
 }

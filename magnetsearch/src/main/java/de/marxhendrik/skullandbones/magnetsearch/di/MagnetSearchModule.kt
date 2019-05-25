@@ -16,7 +16,7 @@ object MagnetSearchModule {
     fun magnetSearchViewModel(
         factory: ViewModelProvider.Factory,
         fragment: MagnetSearchFragment
-    ): Lazy<MagnetSearchViewModel> = fragment.viewModels(factoryProducer = { factory })
+    ): MagnetSearchViewModel = fragment.viewModels<MagnetSearchViewModel>(factoryProducer = { factory }).value
 
     @Provides
     @JvmStatic
