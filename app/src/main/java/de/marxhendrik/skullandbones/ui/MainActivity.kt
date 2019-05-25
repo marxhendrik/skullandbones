@@ -2,9 +2,10 @@ package de.marxhendrik.skullandbones.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import de.marxhendrik.skullandbones.R
-import de.marxhendrik.skullandbones.navigation.Fragments
+import de.marxhendrik.skullandbones.navigation.magnetSearchFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,8 +13,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.commit {
-            add(R.id.root, Fragments.INSTANCE.magnetSearchFragment(this@MainActivity))
-        }
+        addFragment(magnetSearchFragment())
     }
+
+    private fun addFragment(fragment: Fragment) =
+        supportFragmentManager.commit {
+            add(R.id.root, fragment)
+        }
 }

@@ -1,13 +1,9 @@
 package de.marxhendrik.skullandbones.navigation
 
-import android.content.Context
 import androidx.fragment.app.Fragment
+import de.marxhendrik.skullandbones.ui.MainActivity
 
-enum class Fragments {
-    INSTANCE;
+private const val magnetSearchFragmentName = "de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchFragment"
 
-    private val magnetSearchFragmentName = "de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchFragment"
-
-    fun magnetSearchFragment(context: Context): Fragment = Fragment.instantiate(context, magnetSearchFragmentName)
-
-}
+fun MainActivity.magnetSearchFragment(): Fragment =
+    supportFragmentManager.fragmentFactory.instantiate(classLoader, magnetSearchFragmentName)
