@@ -1,51 +1,27 @@
 package de.marxhendrik.skullandbones.magnetsearch.domain
 
-import de.marxhendrik.skullandbones.core.base.Either
+import de.marxhendrik.skullandbones.core.base.usecase.UseCase
 import de.marxhendrik.skullandbones.magnetsearch.data.Urls
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import timber.log.Timber
-import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
-class MagnetSearchUseCase @Inject constructor() {
+class MagnetSearchUseCase : UseCase<String, List<MagnetSearchUseCase.SearchResult>> {
 
-    private val job = Job()
-    private val ioScope = CoroutineScope(Dispatchers.IO + job)
-    private val uiScope = CoroutineScope(Dispatchers.Main + job)
+    override suspend operator fun invoke(param: String) = request(param)
 
-    fun requestResult(parentJob: Job, callback: (Either<Exception, List<SearchResult>>) -> Unit): Job {
-        ioScope.launch(parentJob) {
-            val result = request("game of thrones")
-            uiScope.launch {
-                callback(Either.Right(result))
-            }
-        }
-
-        return job
-    }
-
-    // FIXME figure out what happens with Exceptions
     private suspend fun request(query: String): List<SearchResult> {
         return suspendCoroutine { continuation ->
             Timber.i("try call jsoup")
-            try {
-                val result = Jsoup.connect(Urls.baySearch(query)).get()
-                    .select("tr")
-                    .select("td")
-                    .asSequence()
-                    .flatMap { getDivHref(it).zip(getLinks(it)).map { pair -> SearchResult(pair.first, pair.second) } }
-                    .toList()
+            val result = Jsoup.connect(Urls.baySearch(query)).get()
+                .select("tr")
+                .select("td")
+                .asSequence()
+                .flatMap { getDivHref(it).zip(getLinks(it)).map { pair -> SearchResult(pair.first, pair.second) } }
+                .toList()
 
-                Timber.i("resume")
-                continuation.resumeWith(Result.success(result))
-            } catch (e: Exception) {
-                continuation.resumeWith(Result.failure(e))
-            }
+            continuation.resumeWith(Result.success(result))
         }
     }
 

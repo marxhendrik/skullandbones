@@ -1,29 +1,22 @@
 package de.marxhendrik.skullandbones.magnetsearch.ui
 
-import androidx.lifecycle.ViewModel
+import de.marxhendrik.skullandbones.core.base.executor.Executor
+import de.marxhendrik.skullandbones.core.base.viewmodel.BaseViewModel
 import de.marxhendrik.skullandbones.magnetsearch.domain.MagnetSearchUseCase
-import kotlinx.coroutines.Job
 import timber.log.Timber
 import javax.inject.Inject
 
-class MagnetSearchViewModel @Inject constructor(var searchUseCase: MagnetSearchUseCase) : ViewModel() {
-
-    // FIXME move execution part to executor
-    private val job = Job()
+class MagnetSearchViewModel @Inject constructor(
+    executor: Executor,
+    var searchUseCase: MagnetSearchUseCase
+) : BaseViewModel(executor) {
 
     fun requestResult(callback: (List<MagnetSearchUseCase.SearchResult>) -> Unit) {
-        searchUseCase.requestResult(job) { either ->
-            either.on(
-                failure = {
-                    Timber.e(it, "error") //FIXME
-                },
+        execute(searchUseCase, "John Wick", { result ->
+            result.on(
+                failure = { Timber.e(it, "error") },
                 success = callback
             )
-        }
+        })
     }
-
-    override fun onCleared() {
-        job.cancel()
-    }
-
 }

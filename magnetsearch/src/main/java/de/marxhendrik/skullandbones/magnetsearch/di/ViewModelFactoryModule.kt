@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
+import de.marxhendrik.skullandbones.core.base.executor.CoroutineExecutor
+import de.marxhendrik.skullandbones.core.base.executor.Executor
 import de.marxhendrik.skullandbones.core.base.viewmodel.ViewModelFactory
 import de.marxhendrik.skullandbones.core.base.viewmodel.ViewModelKey
 import de.marxhendrik.skullandbones.core.base.viewmodel.ViewModelMap
@@ -18,13 +20,19 @@ object ViewModelFactoryModule {
     @Provides
     @JvmStatic
     @FeatureScope
-    fun viewModelFactory(providers: ViewModelMap): ViewModelProvider.Factory =
-        ViewModelFactory(providers)
+    fun viewModelFactory(providers: ViewModelMap): ViewModelProvider.Factory = ViewModelFactory(providers)
 
     @Provides
     @IntoMap
     @JvmStatic
     @ViewModelKey(MagnetSearchViewModel::class)
-    fun viewModelIntoMap(useCase: MagnetSearchUseCase): ViewModel = MagnetSearchViewModel(useCase)
+    fun viewModelIntoMap(
+        useCase: MagnetSearchUseCase,
+        executor: Executor
+    ): ViewModel = MagnetSearchViewModel(executor, useCase)
+
+    @Provides
+    @JvmStatic
+    fun executor(): Executor = CoroutineExecutor()
 
 }
