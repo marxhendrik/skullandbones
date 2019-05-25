@@ -1,6 +1,6 @@
 package de.marxhendrik.skullandbones
 
-import de.marxhendrik.skullandbones.magnetsearch.data.baysearch
+import de.marxhendrik.skullandbones.magnetsearch.data.Urls
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.junit.Ignore

@@ -10,9 +10,10 @@
         <dist:fusing dist:include="true"/>
     </dist:module>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchFragment"/>
     </application>
-
 </manifest>
 
