@@ -11,11 +11,12 @@ sealed class Either<out L, out R> {
     fun <L> left(a: L) = Left(a)
     fun <R> right(b: R) = Right(b)
 
-    fun on(failure: (L) -> Any, success: (R) -> Any): Any =
+    fun on(failure: (L) -> Unit, success: (R) -> Unit) {
         when (this) {
             is Left -> failure(a)
             is Right -> success(b)
         }
+    }
 }
 
 fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =

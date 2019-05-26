@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
 abstract class BaseFragment : Fragment() {
 
@@ -22,4 +24,6 @@ abstract class BaseFragment : Fragment() {
     }
 
     open fun onViewCreated() {}
+
+    fun <T> LiveData<T>.observe(func: (T) -> Unit) = observe(this@BaseFragment, Observer<T> { t -> func(t) })
 }
