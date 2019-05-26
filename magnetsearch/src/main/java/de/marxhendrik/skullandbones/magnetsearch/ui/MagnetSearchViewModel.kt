@@ -1,14 +1,20 @@
 package de.marxhendrik.skullandbones.magnetsearch.ui
 
+import android.widget.SearchView
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import de.marxhendrik.skullandbones.core.base.executor.Executor
 import de.marxhendrik.skullandbones.core.base.livedata.map
 import de.marxhendrik.skullandbones.core.base.viewmodel.BaseViewModel
+import de.marxhendrik.skullandbones.magnetsearch.BR
 import de.marxhendrik.skullandbones.magnetsearch.domain.MagnetSearchUseCase
 import de.marxhendrik.skullandbones.magnetsearch.ui.uimodel.MagnetSearchUiModel
 import timber.log.Timber
 import javax.inject.Inject
+
 
 class MagnetSearchViewModel(executor: Executor) : BaseViewModel(executor) {
 
@@ -25,7 +31,7 @@ class MagnetSearchViewModel(executor: Executor) : BaseViewModel(executor) {
 class MagnetSearchUiController @Inject constructor(
     private val viewModel: MagnetSearchViewModel, //<-- FIXME executor enough?
     private var searchUseCase: MagnetSearchUseCase
-) {
+) : BaseObservable() {
 
     init {
         Timber.i("new ui controller")
@@ -44,4 +50,39 @@ class MagnetSearchUiController @Inject constructor(
             )
         })
     }
+
+    /////////////// FIXME no likey
+
+    private var query: String = ""
+
+    @Bindable
+    fun getQuery(): String {
+        return query
+    }
+
+
+    fun getOnQueryTextListener(): SearchView.OnQueryTextListener {
+        return object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(q: String): Boolean {
+                Timber.i("query is:%s ", q)
+                query = q
+                notifyPropertyChanged(BR.query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        }
+    }
+}
+
+@BindingAdapter("app:queryTextListener")
+fun SearchView.bindQueryTextListener(listener: SearchView.OnQueryTextListener) {
+    setOnQueryTextListener(listener)
+}
+
+@BindingAdapter("app:query")
+fun SearchView.bindQuery(queryText: String) {
+    setQuery(queryText, false)
 }
