@@ -10,7 +10,7 @@ import de.marxhendrik.skullandbones.magnetsearch.data.api.MagnetSearchApi
 import de.marxhendrik.skullandbones.magnetsearch.data.repo.MagnetSearchRepo
 import de.marxhendrik.skullandbones.magnetsearch.domain.MagnetSearchUseCase
 import de.marxhendrik.skullandbones.magnetsearch.ui.view.MagnetSearchFragment
-import de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchViewModel
+import de.marxhendrik.skullandbones.magnetsearch.ui.model.MagnetSearchViewModel
 
 @Module(includes = [ViewModelFactoryModule::class])
 abstract class MagnetSearchModule {

@@ -11,7 +11,7 @@ import de.marxhendrik.skullandbones.core.base.viewmodel.ViewModelFactory
 import de.marxhendrik.skullandbones.core.base.viewmodel.ViewModelKey
 import de.marxhendrik.skullandbones.core.base.viewmodel.ViewModelMap
 import de.marxhendrik.skullandbones.core.di.scope.FeatureScope
-import de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchViewModel
+import de.marxhendrik.skullandbones.magnetsearch.ui.model.MagnetSearchViewModel
 
 @Module
 object ViewModelFactoryModule {
@@ -25,7 +25,8 @@ object ViewModelFactoryModule {
     @IntoMap
     @JvmStatic
     @ViewModelKey(MagnetSearchViewModel::class)
-    fun viewModelIntoMap(executor: Executor): ViewModel = MagnetSearchViewModel(executor)
+    fun viewModelIntoMap(executor: Executor): ViewModel =
+        MagnetSearchViewModel(executor)
 
     @Provides
     @JvmStatic

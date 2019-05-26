@@ -8,10 +8,11 @@ private const val magnetSearchFragmentName = "de.marxhendrik.skullandbones.magne
 fun NavigationActivity.addMagnetSearchFragment(rootId: Int) = addFragment(magnetSearchFragmentName, rootId)
 
 private fun NavigationActivity.addFragment(fragmentName: String, rootId: Int) {
-    val supportFragmentManager = getSupportFragmentManager()
-    
-    val fragment = supportFragmentManager.findFragmentByTag(fragmentName)
-        ?: supportFragmentManager.fragmentFactory.instantiate(getClassLoader(), fragmentName)
+    val fragment =
+        with(getSupportFragmentManager()) {
+            findFragmentByTag(fragmentName)
+                ?: fragmentFactory.instantiate(getClassLoader(), fragmentName)
+        }
 
     if (!fragment.isAdded) addFragment(rootId, fragment, fragmentName)
 }

@@ -4,7 +4,7 @@ import de.marxhendrik.skullandbones.core.base.fragment.BaseDataBindingFragment
 import de.marxhendrik.skullandbones.magnetsearch.R
 import de.marxhendrik.skullandbones.magnetsearch.databinding.FragmentMagnetSearchBinding
 import de.marxhendrik.skullandbones.magnetsearch.di.buildAndInject
-import de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchUiController
+import de.marxhendrik.skullandbones.magnetsearch.ui.presentation.MagnetSearchUiController
 import javax.inject.Inject
 
 class MagnetSearchFragment(

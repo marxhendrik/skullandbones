@@ -1,10 +1,11 @@
-package de.marxhendrik.skullandbones.magnetsearch.ui
+package de.marxhendrik.skullandbones.magnetsearch.ui.presentation
 
 import androidx.databinding.BaseObservable
 import androidx.lifecycle.LiveData
 import de.marxhendrik.skullandbones.core.base.livedata.map
 import de.marxhendrik.skullandbones.magnetsearch.domain.MagnetSearchUseCase
-import de.marxhendrik.skullandbones.magnetsearch.ui.uimodel.MagnetSearchUiModel
+import de.marxhendrik.skullandbones.magnetsearch.ui.model.MagnetSearchUiModel
+import de.marxhendrik.skullandbones.magnetsearch.ui.model.MagnetSearchViewModel
 import de.marxhendrik.skullandbones.magnetsearch.ui.view.TextListener
 import timber.log.Timber
 import javax.inject.Inject
