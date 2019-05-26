@@ -12,7 +12,7 @@ The Goal in this Architecture is to try to stick to community standards of MVVM 
 common pitfalls and keep the app modularized, unit-testable, scopable and responsibilites well seperated.
 
 - Modularization: We use a single MainActivity in the app module which will reflectively add dynamic feature modules
-  -The  
+   - The Sub point!  
 
 
 
