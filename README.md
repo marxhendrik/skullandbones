@@ -30,7 +30,7 @@ common pitfalls and keep the app modularized, unit-testable, scopable and respon
   - The UseCases expose the `suspend` functions or can expose normal functions when they are not interested in the mode
   of execution
   
-- **ViewModel**: We use the ViewModel to hold LiveData and the Background Jobs that are being executed by the Exector. 
+- **ViewModel**: We use the ViewModel to hold LiveData and the Background Jobs that are being executed by the Executor.
 This makes sure that data and execution of tasks can survive configuration change. Our ViewModel will however not 
 contain any presentation logic and delegate execution of UseCases to the Executor
 
