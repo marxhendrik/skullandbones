@@ -11,7 +11,7 @@ code (or later in the preferences)
 * save search template
 * notifiy scheduled with search results for template and trigger download
 
-### Phase one : Architecture [x]
+### Phase one : Architecture
 
 The Goal in this Architecture is to try to stick to community standards of MVVM with androidx.arch Components and avoid
 common pitfalls and keep the app modularized, unit-testable, scopable and responsibilites well seperated.
@@ -47,7 +47,7 @@ UiController for the execution of UseCases
   - Domain (_Business Logic_): UseCases
   - Data (_Persistence, Network_): Repositories/Services and Apis
 
-### Phase two : Functionality [ ]
+### Phase two : Functionality
 
 - [x] Iteration 0
   - [x] search a search term and parse result with jsoup library
@@ -69,7 +69,7 @@ UiController for the execution of UseCases
 - [ ] Iteration 6
   - [ ] Polish and Phase three stuff
 
-### Phase three : Design [ ]
+### Phase three : Design
 
 Design will most likely follow after the app is fully functional. The general idea is that a number of fragments can be
 loaded into the MainActivity in a Card-like layout. When the Card is clicked it will go full-screen and changes the UI to
