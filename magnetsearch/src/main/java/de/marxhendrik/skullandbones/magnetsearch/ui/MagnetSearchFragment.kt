@@ -16,6 +16,5 @@ class MagnetSearchFragment(
 
     override fun onViewCreated() {
         Timber.i("onViewCreated")
-        uiController.request("John Wick")
     }
 }

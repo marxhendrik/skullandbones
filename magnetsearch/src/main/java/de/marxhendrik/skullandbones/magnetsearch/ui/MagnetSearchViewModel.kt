@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData
 import de.marxhendrik.skullandbones.core.base.executor.Executor
 import de.marxhendrik.skullandbones.core.base.livedata.map
 import de.marxhendrik.skullandbones.core.base.viewmodel.BaseViewModel
-import de.marxhendrik.skullandbones.magnetsearch.BR
 import de.marxhendrik.skullandbones.magnetsearch.domain.MagnetSearchUseCase
 import de.marxhendrik.skullandbones.magnetsearch.ui.uimodel.MagnetSearchUiModel
 import timber.log.Timber
@@ -46,7 +45,7 @@ class MagnetSearchUiController @Inject constructor(
         viewModel.execute(searchUseCase, query, { result ->
             result.on(
                 failure = { Timber.e(it, "error") },
-                success = { viewModel.uiModel.value = MagnetSearchUiModel(it[0].title ?: "") }
+                success = { viewModel.uiModel.value = MagnetSearchUiModel(it.getOrNull(0)?.title ?: "") }
             )
         })
     }
@@ -63,15 +62,13 @@ class MagnetSearchUiController @Inject constructor(
 
     fun getOnQueryTextListener(): SearchView.OnQueryTextListener {
         return object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(q: String): Boolean {
-                Timber.i("query is:%s ", q)
-                query = q
-                notifyPropertyChanged(BR.query)
-                return false
-            }
+            override fun onQueryTextSubmit(q: String): Boolean = true
 
             override fun onQueryTextChange(newText: String): Boolean {
-                return false
+                Timber.i("query is:%s ", newText)
+                query = newText
+                request(query)
+                return true
             }
         }
     }
