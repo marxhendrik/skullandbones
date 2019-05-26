@@ -21,13 +21,13 @@ common pitfalls and keep the app modularized, unit-testable, scopable and respon
   - An `Executor` class which is delegated to by the `ViewModel` will launch the Coroutine on an io scheduler and post
   the response on the ui thread. The executor also clears any jobs via the `onCleared()` callback of the ViewModel. 
   This  makes sure that no components of the view layer know about background work, they only get the result in form of
-  an 'Either' class which lets them handle Responses and Errors.
+  an `Either` class which lets them handle Responses and Errors.
   - The UseCases expose the `suspend` functions or can expose normal functions when they are not interested in the mode
   of execution
   
-- **ViewModel**: We use the ViewModel to hold LiveData and the Background Jobs that are being executed by the Exector. This
-makes sure that we can survive configuration change. Our ViewModel will however not contain any presentation logic and
-delegate execution of UseCases to the Executor
+- **ViewModel**: We use the ViewModel to hold LiveData and the Background Jobs that are being executed by the Exector. 
+This makes sure that data and execution of tasks can survive configuration change. Our ViewModel will however not 
+contain any presentation logic and delegate execution of UseCases to the Executor
 
 - **UiController**: This class contains presentation logic. It is injected into the View and knows the ViewModel. It knows
 the UseCases and delegates their execution to the Exeutor of the ViewModel. It also provides and if necessary maps
