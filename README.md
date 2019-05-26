@@ -49,31 +49,27 @@ UiController for the execution of UseCases
 
 ### Phase two : Functionality   (Todo)
 
-- First Iteration
+1. Iteration
   - Search for torrents and display results
   - Click on a result to open magnet link intent
 
-- Second Iteration
-  - Send magnet links directly to Synology Disk Ststion Download Manager (if they have a workable API)
+1. Iteration
+  - Send magnet links directly to Synology Disk Station Download Manager (if they have a workable API)
   - Handle Magnet links from other apps
   
-- Third Iteration
+1. Iteration
   - Configure the url via preferences
   - Configure the Disk Station url and port via preferences
 
-- Fourth Iteration
-  - Configure the url via preferences
-  - Configure the Disk Station url and port via preferences
-
-- Fifth Iteration
+1. Iteration
   - Save certain properties of a search as a Template (File Size, search Term)
   - Provide placeholder for things (start with numbers)
 
-- Sixth Iteration
+1. Iteration
   - Schedule Templates to execute via a notification e.g. once a week
   - Provide a way to auto-increment placeholder number for each notification
   
-- Seventh Iteration
+1. Iteration
   - Polish and Phase three stuff
 
 ### Phase three : Design   (Todo)
