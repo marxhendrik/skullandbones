@@ -61,7 +61,7 @@ UiController for the execution of UseCases
 4. Iteration
   - Save certain properties of a search as a Template (File Size, search Term)
   - Provide placeholder for things (start with numbers)
-4. Iteration
+5. Iteration
   - Schedule Templates to execute via a notification e.g. once a week
   - Provide a way to auto-increment placeholder number for each notification 
 6. Iteration
