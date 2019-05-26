@@ -31,10 +31,10 @@ contain any presentation logic and delegate execution of UseCases to the Executo
 
 - **UiController**: This class contains presentation logic. It is injected into the View and knows the ViewModel. It knows
 the UseCases and delegates their execution to the Exeutor of the ViewModel. It also provides and if necessary maps
-the LiveData that the ViewModel holds for databinding to the View. This class should be kept clear of View Dependencies
+the LiveData that the ViewModel holds for databinding to the View. This class should be kept clear of View dependencies
 so it can be unit tested
 
-- **Databinding**: The View uses two-way Databinding to display data of the UiController and provide Data back to the 
+- **Databinding**: The View uses two-way Databinding to display data of the UiController and provide data back to the 
 UiController for the execution of UseCases
 
 - **Layers**: Each feature is seperated in three layers: UI, Domain and Data
