@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import de.marxhendrik.skullandbones.core.base.livedata.observe
@@ -34,4 +36,19 @@ abstract class BaseFragment : Fragment() {
     open fun inject() {}
 
     fun <T> LiveData<T>.observe(func: (T) -> Unit) = observe(this@BaseFragment, func)
+}
+
+abstract class BaseDataBindingFragment<T : ViewDataBinding> : BaseFragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return DataBindingUtil.inflate<T>(inflater, layoutId, container, false).let {
+            it.setLifecycleOwner { lifecycle }
+            bind(it)
+            it.root
+        }
+    }
+
+    abstract fun bind(binding: T)
+
+
 }

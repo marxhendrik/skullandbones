@@ -27,8 +27,14 @@ class MagnetSearchUiController @Inject constructor(
     private var searchUseCase: MagnetSearchUseCase
 ) {
 
-    val searchResult: LiveData<MagneSearchUiModel>
-        get() = viewModel.searchResult
+    init {
+        Timber.i("new ui controller")
+    }
+
+    val title: LiveData<String>
+        get() = viewModel.uiModel.map { it.title }
+
+    var text: String = "example"
 
     fun request(query: String) {
         viewModel.execute(searchUseCase, query, { result ->
