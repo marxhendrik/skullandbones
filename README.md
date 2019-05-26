@@ -18,9 +18,9 @@ common pitfalls and keep the app modularized, unit-testable, scopable and respon
 
 - **Modularization**: We use a single MainActivity in the app module which will reflectively add dynamic feature modules
    - All Activities that provide self-contained features will be DFMs
-   - DMFs depend on :app and on :core
+   - DMFs depend on _:app_ and on _:core_
    - Core Module has shared classes and Dependencies
-   - common dependencies are added via gradle.files that are included in the modules via *apply from:* in the build.gradle
+   - common dependencies are added via gradle files that are included in the modules via *apply from:* in the _build.gradle_
    
 - **Coroutines**: We use Coroutines for background work
   - An `Executor` class which is delegated to by the `ViewModel` will launch the Coroutine on an io scheduler and post
