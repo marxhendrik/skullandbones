@@ -10,6 +10,7 @@ import de.marxhendrik.skullandbones.magnetsearch.ui.view.TextListener
 import timber.log.Timber
 import javax.inject.Inject
 
+//TODO create in module
 class MagnetSearchUiController @Inject constructor(
     private val viewModel: MagnetSearchViewModel,
     private var searchUseCase: MagnetSearchUseCase
