@@ -13,21 +13,24 @@ import de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchFragment
 import de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchViewModel
 
 @Module(includes = [ViewModelFactoryModule::class])
-object MagnetSearchModule {
+abstract class MagnetSearchModule {
 
-    @Provides
-    @JvmStatic
-    fun magnetSearchViewModel(
-        factory: ViewModelProvider.Factory,
-        fragment: MagnetSearchFragment
-    ): MagnetSearchViewModel = fragment.viewModels<MagnetSearchViewModel>(factoryProducer = { factory }).value
+    @Module
+    companion object {
+        @Provides
+        @JvmStatic
+        fun magnetSearchViewModel(
+            factory: ViewModelProvider.Factory,
+            fragment: MagnetSearchFragment
+        ): MagnetSearchViewModel = fragment.viewModels<MagnetSearchViewModel>(factoryProducer = { factory }).value
 
-    @Provides
-    @JvmStatic
-    fun magnetSearchUseCase(repo: MagnetSearchRepo) = MagnetSearchUseCase(repo)
+        @Provides
+        @JvmStatic
+        fun magnetSearchUseCase(repo: MagnetSearchRepo) = MagnetSearchUseCase(repo)
 
-    @Provides
-    @JvmStatic
-    fun searchApi(jsoup: JsoupApiBridge): MagnetSearchApi = BayMagnetSearchApi(jsoup)
+        @Provides
+        @JvmStatic
+        fun searchApi(jsoup: JsoupApiBridge): MagnetSearchApi = BayMagnetSearchApi(jsoup)
+    }
 
 }

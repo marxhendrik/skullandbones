@@ -9,7 +9,7 @@ import javax.inject.Inject
 class MagnetSearchFragment(override val layoutId: Int = R.layout.fragment_magnet_search) : BaseFragment() {
 
     @Inject
-    lateinit var viewModel: MagnetSearchViewModel
+    lateinit var viewModel: MagnetSearchUiController
 
     override fun onViewCreated() {
         inject()
