@@ -17,6 +17,9 @@ fun makeSearchViewOnQueryListener(callback: TextListener) = object : SearchView.
     }
 }
 
+/**
+ * Makes sure that UiController does not need to know view classes
+ */
 interface TextListener {
     operator fun invoke(text: String)
 }
