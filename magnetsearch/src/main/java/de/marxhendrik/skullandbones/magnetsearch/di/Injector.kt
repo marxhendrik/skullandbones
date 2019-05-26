@@ -1,7 +1,7 @@
 package de.marxhendrik.skullandbones.magnetsearch.di
 
 import de.marxhendrik.skullandbones.coreComponent
-import de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchFragment
+import de.marxhendrik.skullandbones.magnetsearch.ui.view.MagnetSearchFragment
 
 fun MagnetSearchFragment.buildAndInject() {
     DaggerMagnetSearchComponent.builder()

@@ -1,9 +1,10 @@
-package de.marxhendrik.skullandbones.magnetsearch.ui
+package de.marxhendrik.skullandbones.magnetsearch.ui.view
 
 import de.marxhendrik.skullandbones.core.base.fragment.BaseDataBindingFragment
 import de.marxhendrik.skullandbones.magnetsearch.R
 import de.marxhendrik.skullandbones.magnetsearch.databinding.FragmentMagnetSearchBinding
 import de.marxhendrik.skullandbones.magnetsearch.di.buildAndInject
+import de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchUiController
 import javax.inject.Inject
 
 class MagnetSearchFragment(
@@ -13,7 +14,10 @@ class MagnetSearchFragment(
     @Inject
     lateinit var uiController: MagnetSearchUiController
 
-    override fun onViewCreated() {
-        Timber.i("onViewCreated")
+    override fun bind(binding: FragmentMagnetSearchBinding) {
+        binding.data = uiController
     }
+
+    override fun inject() = buildAndInject()
+
 }

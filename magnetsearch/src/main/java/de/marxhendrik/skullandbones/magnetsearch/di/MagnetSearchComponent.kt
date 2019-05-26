@@ -4,7 +4,7 @@ import dagger.BindsInstance
 import dagger.Component
 import de.marxhendrik.skullandbones.core.di.CoreComponent
 import de.marxhendrik.skullandbones.core.di.scope.FeatureScope
-import de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchFragment
+import de.marxhendrik.skullandbones.magnetsearch.ui.view.MagnetSearchFragment
 
 @FeatureScope
 @Component(modules = [MagnetSearchModule::class], dependencies = [CoreComponent::class])

@@ -13,15 +13,14 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="de.marxhendrik.skullandbones.magnetsearch.ui.MagnetSearchFragment">
+            tools:context="de.marxhendrik.skullandbones.magnetsearch.ui.view.MagnetSearchFragment">
 
         <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:queryHint="@{data.text}"
-                app:queryTextListener="@{data.onQueryTextListener}"
-                app:query="@{data.query}"
+                android:queryHint="@{data.hint}"
+                app:queryTextListener="@{data.textListener}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
