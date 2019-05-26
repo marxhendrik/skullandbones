@@ -21,6 +21,13 @@ class MagnetSearchUiController @Inject constructor(
 
     var hint: String = "Search links"
 
+    val textListener: TextListener = object : TextListener {
+        override fun invoke(text: String) {
+            Timber.i("query is:%s ", text)
+            request(text)
+        }
+    }
+
     private fun request(query: String) {
         viewModel.execute(searchUseCase, query, { result ->
             result.on(
@@ -33,13 +40,6 @@ class MagnetSearchUiController @Inject constructor(
                 }
             )
         })
-    }
-
-    val textListener: TextListener = object : TextListener {
-        override fun invoke(text: String) {
-            Timber.i("query is:%s ", text)
-            request(text)
-        }
     }
 }
 
