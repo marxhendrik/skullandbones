@@ -11,7 +11,7 @@ code (or later in the preferences)
 * save search template
 * notifiy scheduled with search results for template and trigger download
 
-### Phase one : Architecture   (In Progress)
+### Phase one : Architecture [X]
 
 The Goal in this Architecture is to try to stick to community standards of MVVM with androidx.arch Components and avoid
 common pitfalls and keep the app modularized, unit-testable, scopable and responsibilites well seperated.
@@ -42,32 +42,32 @@ so it can be unit tested
 - **Databinding**: The View uses two-way Databinding to display data of the UiController and provide data back to the 
 UiController for the execution of UseCases
 
-- **Layers**: Each feature is seperated in three layers: UI, Domain and Data
-  - Ui (View and Presentation): MVVM + UiController
-  - Domain (Business Logic): UseCases
-  - Data (Persistence, Network): Repositories/Services and Apis
+- **Layers**: Each feature is seperated in three layers: _UI, Domain and Data_. However currently only seperated by packages and not by modules
+  - Ui (_View and Presentation_): MVVM + UiController
+  - Domain (_Business Logic_): UseCases
+  - Data (_Persistence, Network_): Repositories/Services and Apis
 
-### Phase two : Functionality   (Todo)
+### Phase two : Functionality [ ]
 
-1. Iteration
+- Iteration 1
   - Search for torrents and display results
   - Click on a result to open magnet link intent
-2. Iteration
+- Iteration 2
   - Send magnet links directly to Synology Disk Station Download Manager (if they have a workable API)
   - Handle Magnet links from other apps
-3. Iteration
+- Iteration 3
   - Configure the url via preferences
   - Configure the Disk Station url and port via preferences
-4. Iteration
+- Iteration 4
   - Save certain properties of a search as a Template (File Size, search Term)
   - Provide placeholder for things (start with numbers)
-5. Iteration
+- Iteration 5
   - Schedule Templates to execute via a notification e.g. once a week
   - Provide a way to auto-increment placeholder number for each notification 
-6. Iteration
+- Iteration 6
   - Polish and Phase three stuff
 
-### Phase three : Design   (Todo)
+### Phase three : Design [ ]
 
 Design will most likely follow after the app is fully functional. The general idea is that a number of fragments can be
 loaded into the MainActivity in a Card-like layout. When the Card is clicked it will go full-screen and changes the UI to
