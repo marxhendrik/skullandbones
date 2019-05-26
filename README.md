@@ -20,7 +20,7 @@ common pitfalls and keep the app modularized, unit-testable, scopable and respon
    - All Activities that provide self-contained features will be DFMs
    - DMFs depend on :app and on :core
    - Core Module has shared classes and Dependencies
-   - dependencies are loaded in the build.gradle via *apply from:*
+   - common dependencies are added via gradle.files that are included in the modules via *apply from:* in the build.gradle
    
 - **Coroutines**: We use Coroutines for background work
   - An `Executor` class which is delegated to by the `ViewModel` will launch the Coroutine on an io scheduler and post
