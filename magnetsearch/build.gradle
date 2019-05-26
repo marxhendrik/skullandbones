@@ -13,6 +13,4 @@ dependencies {
     implementation project(':app')
     implementation project(':core')
     implementation 'org.jsoup:jsoup:1.12.1'
-
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-alpha01"
 }

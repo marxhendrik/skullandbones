@@ -1,12 +1,13 @@
 package de.marxhendrik.skullandbones.core.base.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import de.marxhendrik.skullandbones.core.base.livedata.observe
 
 abstract class BaseFragment : Fragment() {
 
@@ -23,7 +24,14 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onAttach(context: Context) {
+        inject()
+        super.onAttach(context)
+    }
+
     open fun onViewCreated() {}
 
-    fun <T> LiveData<T>.observe(func: (T) -> Unit) = observe(this@BaseFragment, Observer<T> { t -> func(t) })
+    open fun inject() {}
+
+    fun <T> LiveData<T>.observe(func: (T) -> Unit) = observe(this@BaseFragment, func)
 }
