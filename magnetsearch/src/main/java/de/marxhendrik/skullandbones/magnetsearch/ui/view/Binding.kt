@@ -8,7 +8,6 @@ fun SearchView.bindQueryTextListener(callback: TextListener) {
     setOnQueryTextListener(makeSearchViewOnQueryListener(callback))
 }
 
-
 fun makeSearchViewOnQueryListener(callback: TextListener) = object : SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(q: String) = true
     override fun onQueryTextChange(newText: String): Boolean {
