@@ -3,7 +3,7 @@ package de.marxhendrik.skullandbones.magnetsearch.ui.view
 import android.widget.SearchView
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter("app:queryTextListener")
+@BindingAdapter("queryTextListener")
 fun SearchView.bindQueryTextListener(callback: TextListener) {
     setOnQueryTextListener(makeSearchViewOnQueryListener(callback))
 }
