@@ -7,6 +7,7 @@ private const val magnetSearchFragmentName = "de.marxhendrik.skullandbones.magne
 
 fun NavigationActivity.addMagnetSearchFragment(rootId: Int) = addFragment(magnetSearchFragmentName, rootId)
 
+// FIXME move these methods
 private fun NavigationActivity.addFragment(fragmentName: String, rootId: Int) {
     val fragment =
         with(getSupportFragmentManager()) {
