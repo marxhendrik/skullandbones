@@ -77,7 +77,7 @@ show full functionality. The "collapsed" card provides only a summary or somethi
 the card. E.g. the "SearchCard" will show a searchbar and when clicked on it will expand and let you type and give
 suggestions. Do not expect anything to look especially well-designed though `;)`
 
-- [ ] Ui tests when design is closer to finished
+- [ ] ui tests when design is closer to finished
 
 
 
@@ -85,5 +85,7 @@ Misc TODO's
 - [ ] figure out if its possible to share data between DMFs without abusing the Core-Module. E.g. SearchTemplateFragment will display Search Templates
 but the search Templates are saved by the :magnetsearch module. Shared Data layer only seems like a good idea if the instances of repo etc. can be shared as well
     - If not possible think about whether those features should be seperated.
-- [ ] Unit tests for domain layer
-- [ ] Unit tests for UiController
+- [ ] find or make an icon for the app and the repo
+- [ ] kotlin gradle scripts ?!
+- [ ] unit tests for domain layer
+- [ ] unit tests for UiController
