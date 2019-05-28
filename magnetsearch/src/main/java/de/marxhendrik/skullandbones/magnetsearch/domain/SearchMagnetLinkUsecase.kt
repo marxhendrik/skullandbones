@@ -9,7 +9,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 
-class MagnetSearchUseCase(private val repo: MagnetSearchRepo) : UseCase<String, List<SearchResult?>> {
+class SearchMagnetLinkUsecase(private val repo: MagnetSearchRepo) : UseCase<String, List<SearchResult?>> {
 
     private val debounceRate: Long = 600
     private var query: String? = null

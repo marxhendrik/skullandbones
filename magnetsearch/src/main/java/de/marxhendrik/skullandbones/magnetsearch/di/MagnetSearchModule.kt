@@ -8,7 +8,7 @@ import de.marxhendrik.skullandbones.magnetsearch.data.api.BayMagnetSearchApi
 import de.marxhendrik.skullandbones.magnetsearch.data.api.JsoupApiBridge
 import de.marxhendrik.skullandbones.magnetsearch.data.api.MagnetSearchApi
 import de.marxhendrik.skullandbones.magnetsearch.data.repo.MagnetSearchRepo
-import de.marxhendrik.skullandbones.magnetsearch.domain.MagnetSearchUseCase
+import de.marxhendrik.skullandbones.magnetsearch.domain.SearchMagnetLinkUsecase
 import de.marxhendrik.skullandbones.magnetsearch.ui.view.MagnetSearchFragment
 import de.marxhendrik.skullandbones.magnetsearch.ui.model.MagnetSearchViewModel
 
@@ -26,7 +26,7 @@ abstract class MagnetSearchModule {
 
         @Provides
         @JvmStatic
-        fun magnetSearchUseCase(repo: MagnetSearchRepo) = MagnetSearchUseCase(repo)
+        fun magnetSearchUseCase(repo: MagnetSearchRepo) = SearchMagnetLinkUsecase(repo)
 
         @Provides
         @JvmStatic
