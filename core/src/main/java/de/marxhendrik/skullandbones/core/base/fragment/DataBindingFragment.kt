@@ -7,15 +7,22 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseDataBindingFragment<T : ViewDataBinding> : BaseFragment() {
+abstract class DataBindingFragment<I> : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return DataBindingUtil.inflate<T>(inflater, layoutId, container, false).let {
+        return DataBindingUtil.inflate<ViewDataBinding>(inflater, layoutId, container, false).let {
             it.setLifecycleOwner { lifecycle }
             bind(it)
             it.root
         }
     }
 
-    abstract fun bind(binding: T)
+    protected open fun bind(binding: ViewDataBinding) {
+        val bindingData = getBindingData()
+        binding.setVariable(bindingData.id, bindingData.Item)
+    }
+
+    abstract fun getBindingData(): BindingData<I>
+
+    data class BindingData<T>(val id: Int, val Item: T)
 }
