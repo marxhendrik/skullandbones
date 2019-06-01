@@ -25,5 +25,4 @@ class SearchMagnetLinkUsecase(private val repo: MagnetSearchRepo) : UseCase<Stri
             }
         }
     }
-
 }
