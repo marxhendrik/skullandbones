@@ -19,7 +19,7 @@ class MagnetSearchUiController @Inject constructor(
     private var searchUsecase: SearchMagnetLinkUsecase
 ) : BaseObservable() {
 
-    var hint: String = "Search links" //FIXME
+    var hint: String = "Search links" //FIXME strings
 
     val textListener: TextListener = object : TextListener {
         override fun invoke(text: String) {
@@ -30,6 +30,8 @@ class MagnetSearchUiController @Inject constructor(
 
     val adapter = ResultListAdapter {
         Timber.i("onItemClicked: %s", it)
+        //FIXME just fire intent for now
+        //FIXME check for leaks, not sure this is cleaned up correctly
     }
 
     val adapterData: LiveData<List<UiMagnetSearchResult>>
