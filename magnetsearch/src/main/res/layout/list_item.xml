@@ -13,7 +13,8 @@
                   xmlns:tools="http://schemas.android.com/tools"
                   android:orientation="vertical"
                   android:layout_width="match_parent"
-                  android:layout_height="48dp">
+                  android:padding="8dp"
+                  android:layout_height="?android:attr/listPreferredItemHeight">
 
         <TextView
                 android:gravity="start|center_vertical"
