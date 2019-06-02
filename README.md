@@ -154,7 +154,7 @@ worked out, but it seems to work rather well. It has the following properties:
 6. It is not a framework class and can be unit/tested like any other class
 7. It could inject multiple ViewModels, when for example another View wants to share data
 7. Responsibilities:
-     * Receive Ui Events and execute Usecsases
+     * Receive Ui Events and execute Usecases
      * Update UiModel with result from Usecase execution
      * 2-Way-Databinding
      * Mapping from a general UiModel that could be shared across other views, to view-specific data/primitives
