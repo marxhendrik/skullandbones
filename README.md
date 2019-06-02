@@ -128,7 +128,7 @@ and I am in favor of that if the ViewModel is actually used as a ViewModel(Holde
    * We **should** be able to reuse our viewstates (UiModels) across different views
    * We **should not** share business logic. Sharing of business logic can be alleviated by using Usecases even in the "classic MVVM" but it is still sharing more than it should:
 names of usecases and their invocation. Even if the VM does not know the View we still have an implicit interface/contract
-that you be respected. When we  start implementing multiple paths for Business Logic for different views inside the VM
+that should be respected. When we  start implementing multiple paths for Business Logic for different views inside the VM
 we are implicitly coupling the VM to the views and thus the different views are coupled as well
    * We **should not** share presentation logic: If we want to share our ViewModel to share presentation logic, then we actually want to share a part of our "View"
    and not just Data. At this point it is worth considering if what we really want is maybe two instances of the same view with different business logic, data or
