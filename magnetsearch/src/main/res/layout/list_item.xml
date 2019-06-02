@@ -5,19 +5,20 @@
 
         <variable
                 name="item"
-                type="de.marxhendrik.skullandbones.magnetsearch.ui.model.ResultListItem"/>
+                type="de.marxhendrik.skullandbones.magnetsearch.ui.model.UiMagnetSearchResult"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools"
                   android:orientation="vertical"
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent">
+                  android:layout_height="48dp">
 
         <TextView
+                android:gravity="start|center_vertical"
                 android:id="@+id/title"
                 tools:text="abcd"
-                android:text="@{item.title}"
+                android:text="@{item.name}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

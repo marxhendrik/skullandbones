@@ -1,5 +1,6 @@
 package de.marxhendrik.skullandbones.magnetsearch.ui.view
 
+import androidx.recyclerview.widget.LinearLayoutManager
 import de.marxhendrik.skullandbones.core.base.fragment.DataBindingFragment
 import de.marxhendrik.skullandbones.magnetsearch.BR
 import de.marxhendrik.skullandbones.magnetsearch.R
@@ -22,5 +23,6 @@ class MagnetSearchFragment(
     override fun onViewCreated() {
         searchView.setIconifiedByDefault(false)
         searchView.isSubmitButtonEnabled = false
+        list.layoutManager = LinearLayoutManager(context)
     }
 }
