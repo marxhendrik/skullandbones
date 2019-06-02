@@ -103,9 +103,8 @@ of these concerns.
 1. **ViewModel contains Business logic**: ViewModels inject room databases, repositories, network apis etc. and are used to
 map and transform this data to be used in the view layer.
 2. **ViewModel/View contains Presentation logic**: There is no good place for presentation logic without an extra class because
-the View can not be unit tested and the ViewModel is not allowed to reference views or lifecycle classes. While I would try to
-avoid it, the UiController could do both without breaking any rules (it only lives as long as the view). Sometimes I have seen
-the view directly call methods (for example lifecycle) on the ViewModel
+the View can not be unit tested and the ViewModel is not allowed to reference views or lifecycle classes
+3. **View directly calls ViewModel method** (for example lifecycle)
 
 #### II. ViewModel Abilities and Limitations
 Now lets look at what a ViewModel can do and can't do because that leads us to the part "Consequences"
