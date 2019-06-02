@@ -10,7 +10,8 @@ fun RecyclerView.bindData(adapter: ResultListAdapter) {
 }
 
 
-@BindingAdapter(value = ["data"])
+@BindingAdapter("data")
 fun RecyclerView.bindData(data: List<UiMagnetSearchResult>?) {
-    (adapter as? ResultListAdapter)?.run { data?.let { setData(data) } }
+    data ?: return
+    (adapter as ResultListAdapter).setData(data)
 }
