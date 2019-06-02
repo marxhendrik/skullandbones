@@ -1,5 +1,6 @@
 package de.marxhendrik.skullandbones.magnetsearch.ui.view
 
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.marxhendrik.skullandbones.core.base.fragment.DataBindingFragment
 import de.marxhendrik.skullandbones.magnetsearch.BR
@@ -21,8 +22,18 @@ class MagnetSearchFragment(
     override fun inject() = buildAndInject()
 
     override fun onViewCreated() {
+        configureSearchView()
+        configureRecyclerView()
+    }
+
+    private fun configureSearchView() {
         searchView.setIconifiedByDefault(false)
         searchView.isSubmitButtonEnabled = false
-        list.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun configureRecyclerView() {
+        val layoutManager = LinearLayoutManager(context)
+        list.layoutManager = layoutManager
+        list.addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
     }
 }
