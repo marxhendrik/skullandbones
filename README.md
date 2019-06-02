@@ -37,7 +37,7 @@ contain any presentation logic and delegate execution of UseCases to the Executo
 - **UiController**: This class contains presentation logic. It is injected into the View and knows the ViewModel. It knows
 the UseCases and delegates their execution to the Exeutor of the ViewModel. It also provides and if necessary maps
 the LiveData that the ViewModel holds for databinding to the View. This class should be kept clear of View dependencies
-so it can be unit tested
+so it can be unit tested. See more information below in "Why UiController?"
 
 - **Databinding**: The View uses two-way Databinding to display data of the UiController and provide data back to the 
 UiController for the execution of UseCases
@@ -89,3 +89,51 @@ but the search Templates are saved by the :magnetsearch module. Shared Data laye
 - [ ] kotlin gradle scripts ?!
 - [ ] unit tests for domain layer
 - [ ] unit tests for UiController
+
+
+### Why UiController?
+
+Because the introduction of a UiController component into the "normal" MVVM that many people are using might be unusual
+I want to dedicate an extra explanation as to why I think its necessary. There are multiple reasons for it but let me start
+with what I do not like about many examples I have seen, then explain the abilities and limitations of the ViewModel, then explain
+some follow up mistakes which result from the previous points and finish with explaining why the UiController alleviates some
+of these concerns.
+
+#### I. AntiPatterns in common use
+1. **ViewModel contains Business logic**: ViewModels inject room databases, repositories, network apis etc. and are used to
+map and transform this data to be used in the view layer.
+2. **ViewModel/View contains Presentation logic**: There is no good place for presentation logic without an extra class because
+the View can not be unit tested and the ViewModel is not allowed to reference views or lifecycle classes. While I would try to
+avoid it, the UiController could do both without breaking any rules (it only lives as long as the view). Sometimes I have seen
+the view directly call methods (for example lifecycle) on the ViewModel
+
+#### II. ViewModel Abilities and Limitations
+Now lets look at what a ViewModel can do and can't do because that leads us to the part "Follow up mistakes"
+###### A. Abilities
+1. **Survive configuration change**: the big "superpower" of the ViewModel is that it survives configuration changes.
+Pair that with a pub/sub system like RxJava or LiveData and you can just immediately restore your viewstate again without re-querying your
+data data or using clunky mechanisms like onSaveInstanceState(). Tasks that are run in the background while the configuration
+change goes on can also be completed and then report their results as soon as the task is finished via LiveData
+2. **Inject into multple views**: This is something that I see quoted a lot as a plus for MVVM and I agree, though I will make
+a point in "follow up mistakes" as to why this is not a good idea when you do not keep it simple
+3. **Clean Up via onCleared**: you get a method for free to clear up any subscriptions when the ViewModel is actually destroyed
+
+###### B. Limitations
+1. **No references to View or Lifecycle** As the viewmodel lives longer than the view it can not reference it or a lifecycle as they can also outlive those
+and leak fragments or activites (or objects attached to custom lifecycles)
+
+#### III. Follow up mistakes
+Lets look at some problems that can come up because of the above points and why they are problematic
+1. **Sharing of ViewModel** the Argument that the ViewModel can be shared because it does not reference its view makes sense
+and I am in favor of that if the ViewModel is actually used as a ViewModel(Holder) and not as a ViewController / Presenter / Usecase.
+   * We **should** be able to reuse our viewstates (UiModels) across different views
+   * We **should not** share business logic. Sharing of business logic can be alleviated by using Usecases even in the "classic MVVM" but it is still sharing more than it should:
+names of usecases and their invocation. Even if the VM does not know the View we still have an implicit interface/contract
+that you be respected. When we  start implementing multiple paths for Business Logic for different views inside the VM
+we are implicitly coupling the VM to the views and thus the different views are coupled as well
+   * We **should not** share presentation logic: If we want to share our ViewModel to share presentation logic, then we actually want to share a part of our "View"
+   and not just Data. At this point it is worth considering if what we really want is maybe two instances of the same view with different business logic, data or
+   presentation
+
+2. ****
+
