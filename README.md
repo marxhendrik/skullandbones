@@ -52,7 +52,7 @@ UiController for the execution of UseCases
 - [x] Iteration 0
   - [x] search a search term and parse result with jsoup library
 - [ ] Iteration 1
-  - [ ] Search for torrents and display results
+  - [x] Search for torrents and display results
   - [ ] Click on a result to open magnet link intent
 - [ ] Iteration 2
   - [ ] Send magnet links directly to Synology Disk Station Download Manager (if they have a workable API)
@@ -89,6 +89,7 @@ but the search Templates are saved by the :magnetsearch module. Shared Data laye
 - [ ] kotlin gradle scripts ?!
 - [ ] unit tests for domain layer
 - [ ] unit tests for UiController
+- [ ] use LeakCanary to figure out if the UiController is leaked (probably) and if so if it leaked beyond the completion of the job (probably not)
 
 
 ### Why UiController?
@@ -161,6 +162,10 @@ worked out, but it seems to work rather well. It has the following properties:
         * e.g. translate UiModel to a title String
 
 
+What currently is a bit weird is the way the Executor works in this design. In order for executions of usecases to survive
+configuration changes and in order to cancel the Job, we made the ViewModel a Delegate of the Executor and let it implement
+the Executor interface. Then the UiController can inject the Exeutor (without knowing that it is a ViewModel) and run the usecase in it.
+I am not 100% sure, but this might also leak the UiController when the usecase is executed while the fragment is re-created... I will test this soon.
 
 
 
