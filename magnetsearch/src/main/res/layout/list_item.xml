@@ -14,6 +14,7 @@
                   android:orientation="vertical"
                   android:layout_width="match_parent"
                   android:padding="8dp"
+                  android:background="?android:selectableItemBackground"
                   android:layout_height="?android:attr/listPreferredItemHeight">
 
         <TextView

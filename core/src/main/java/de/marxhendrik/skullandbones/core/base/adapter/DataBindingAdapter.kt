@@ -25,7 +25,9 @@ abstract class DataBindingAdapter<T>(private val bindingItemId: Int) :
     }
 
     override fun onBindViewHolder(holder: DataBindingViewHolder<T>, position: Int) =
-        holder.bind(getItemForPosition(position))
+        holder.bind(getItemForPosition(position)) { onItemClick(it) }
+
+    open fun onItemClick(item: T) {}
 
     override fun getItemCount(): Int = results.size
 

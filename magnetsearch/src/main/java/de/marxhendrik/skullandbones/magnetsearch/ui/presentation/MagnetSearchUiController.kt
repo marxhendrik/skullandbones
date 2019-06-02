@@ -28,7 +28,9 @@ class MagnetSearchUiController @Inject constructor(
         }
     }
 
-    val adapter = ResultListAdapter()
+    val adapter = ResultListAdapter {
+        Timber.i("onItemClicked: %s", it)
+    }
 
     val adapterData: LiveData<List<UiMagnetSearchResult>>
         get() = viewModel.uiModel.map { it.results }

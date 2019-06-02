@@ -8,8 +8,9 @@ class DataBindingViewHolder<T>(
     private val bindingItemId: Int
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: T) {
+    fun bind(item: T, clickFunc: (T) -> Unit) {
         binding.setVariable(bindingItemId, item)
         binding.executePendingBindings()
+        binding.root.setOnClickListener { clickFunc(item) }
     }
 }
