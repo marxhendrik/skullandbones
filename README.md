@@ -114,7 +114,7 @@ Pair that with a pub/sub system like RxJava or LiveData and you can just immedia
 data data or using clunky mechanisms like onSaveInstanceState(). Tasks that are run in the background while the configuration
 change goes on can also be completed and then report their results as soon as the task is finished via LiveData
 2. **Inject into multple views**: This is something that I see quoted a lot as a plus for MVVM and I agree, though I will make
-a point in "follow up mistakes" as to why this is not a good idea when you do not keep it simple
+a point in "Consequences" as to why this is not a good idea when you do not keep it simple
 3. **Clean Up via onCleared**: you get a method for free to clear up any subscriptions when the ViewModel is actually destroyed
 
 ###### B. Limitations
