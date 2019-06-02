@@ -96,7 +96,7 @@ but the search Templates are saved by the :magnetsearch module. Shared Data laye
 Because the introduction of a UiController component into the "normal" MVVM that many people are using might be unusual
 I want to dedicate an extra explanation as to why I think its necessary. There are multiple reasons for it but let me start
 with what I do not like about many examples I have seen, then explain the abilities and limitations of the ViewModel, then explain
-some follow up mistakes which result from the previous points and finish with explaining why the UiController alleviates some
+some consequences which result from the previous points and finish with explaining why the UiController alleviates some
 of these concerns.
 
 #### I. AntiPatterns in common use
@@ -108,7 +108,7 @@ avoid it, the UiController could do both without breaking any rules (it only liv
 the view directly call methods (for example lifecycle) on the ViewModel
 
 #### II. ViewModel Abilities and Limitations
-Now lets look at what a ViewModel can do and can't do because that leads us to the part "Follow up mistakes"
+Now lets look at what a ViewModel can do and can't do because that leads us to the part "Consequences"
 ###### A. Abilities
 1. **Survive configuration change**: the big "superpower" of the ViewModel is that it survives configuration changes.
 Pair that with a pub/sub system like RxJava or LiveData and you can just immediately restore your viewstate again without re-querying your
@@ -122,9 +122,9 @@ a point in "follow up mistakes" as to why this is not a good idea when you do no
 1. **No references to View or Lifecycle** As the viewmodel lives longer than the view it can not reference it or a lifecycle as they can also outlive those
 and leak fragments or activites (or objects attached to custom lifecycles)
 
-#### III. Follow up mistakes
+#### III. Consequences
 Lets look at some problems that can come up because of the above points and why they are problematic
-1. **Sharing of ViewModel** the Argument that the ViewModel can be shared because it does not reference its view makes sense
+1. **(Over)Sharing of ViewModel** the Argument that the ViewModel can be shared because it does not reference its view makes sense
 and I am in favor of that if the ViewModel is actually used as a ViewModel(Holder) and not as a ViewController / Presenter / Usecase.
    * We **should** be able to reuse our viewstates (UiModels) across different views
    * We **should not** share business logic. Sharing of business logic can be alleviated by using Usecases even in the "classic MVVM" but it is still sharing more than it should:
@@ -135,5 +135,33 @@ we are implicitly coupling the VM to the views and thus the different views are 
    and not just Data. At this point it is worth considering if what we really want is maybe two instances of the same view with different business logic, data or
    presentation
 
-2. ****
+2. **Bad Seperation of Concerns** We are talking about a class that is (probably incorrectly) named View**Model**, yet there is
+plenty of examples where this class contains Business Logic, Presentation Logic and basically anything else. The problem is that we have no
+other place to put these things. But the ViewModel is probably the worst place to put them: If you consider the points above in "Abilities" then
+there is quite an obvious use for the ViewModel: Holding View-related state. Nothing else of what we could put in there
+is using its strengths while being indifferent to its weaknesses, so why should we put it there?
+
+
+#### II. UiController
+
+The UiController was an idea to alleviate some of the concerns of the ViewModel usage. It is a new idea and there might be some kinks that have to be
+worked out, but it seems to work rather well. It has the following properties:
+
+1. It lives as long as the View, Activity or Fragment
+2. It knows the ViewModel or for more transparency just the MutableLiveData the ViewModel exposes
+3. It uses 2-way databinding with the View to bind data and views
+4. In theory the UiController could reference the view unlike a ViewModel (I am trying to avoid it though)
+5. In theory the UiController could inject the lifecycleowner and start/stop executing actions according to lifecycle
+6. It is not a framework class and can be unit/tested like any other class
+7. It could inject multiple ViewModels, when for example another View wants to share data
+7. Responsibilities:
+     * Receive Ui Events and execute Usecsases
+     * Update UiModel with result from Usecase execution
+     * 2-Way-Databinding
+     * Mapping from a general UiModel that could be shared across other views, to view-specific data/primitives
+        * e.g. translate UiModel to a title String
+
+
+
+
 
