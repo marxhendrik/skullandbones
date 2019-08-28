@@ -1,7 +1,6 @@
 package de.marxhendrik.skullandbones.magnetsearch.di
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
@@ -21,7 +20,7 @@ object ViewModelFactoryModule {
     @Provides
     @JvmStatic
     @FeatureScope
-    fun viewModelFactory(providers: ViewModelMap): ViewModelProvider.Factory = ViewModelFactory(providers)
+    fun viewModelFactory(providers: ViewModelMap): ViewModelFactory = ViewModelFactory(providers)
 
     @Provides
     @IntoMap

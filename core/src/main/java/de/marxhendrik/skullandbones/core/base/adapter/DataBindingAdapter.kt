@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class DataBindingAdapter<T>(private val bindingItemId: Int) :
     RecyclerView.Adapter<DataBindingViewHolder<T>>() {
-    protected val results = mutableListOf<T>()
+    private val results = mutableListOf<T>()
 
     private var binding: ViewDataBinding? = null
 
