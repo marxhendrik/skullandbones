@@ -19,7 +19,7 @@ class MagnetSearchUiController(
     private var searchUsecase: SearchMagnetLinkUsecase
 ) : BaseObservable(), Executor by executor {
 
-    //FIXME strings
+    //FIXME strings abc
     var hint: String = "Search links"
 
     val textListener: TextListener = object : TextListener {
