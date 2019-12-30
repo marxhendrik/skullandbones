@@ -1,13 +1,14 @@
 package de.marxhendrik.skullandbones.rib.search.ui
 
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.SearchView
 import com.badoo.ribs.android.Text
 import com.badoo.ribs.core.view.RibView
 import com.badoo.ribs.core.view.ViewFactory
 import com.badoo.ribs.customisation.inflate
 import com.jakewharton.rxrelay2.PublishRelay
+import de.marxhendrik.skullandbones.rib.search.ui.SearchInputView.Event.Search
 import de.marxhendrik.skullandbones.search.R
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Consumer
@@ -46,6 +47,23 @@ class SearchInputViewImpl(
 
     private val searchBox: SearchView = androidView.findViewById(R.id.searchView)
 
+    init {
+        setupSearchBox()
+        setQueryListener()
+    }
+
+    private fun setQueryListener() {
+        searchBox.setOnQueryTextListener(textListener {
+            events.accept(Search(it))
+        })
+
+    }
+
+    private fun setupSearchBox() {
+        searchBox.setIconifiedByDefault(false)
+        searchBox.isSubmitButtonEnabled = false
+    }
+
     override fun accept(vm: SearchInputView.ViewModel?) {
         searchBox.queryHint = vm?.hintText?.resolve()
     }
@@ -55,3 +73,11 @@ class SearchInputViewImpl(
 }
 
 
+fun textListener(callback: (String) -> Unit) =
+    object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(q: String) = true
+        override fun onQueryTextChange(newText: String): Boolean {
+            callback(newText)
+            return true
+        }
+    }
