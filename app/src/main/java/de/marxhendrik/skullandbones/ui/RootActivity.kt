@@ -7,14 +7,13 @@ import de.marxhendrik.skullandbones.R
 import de.marxhendrik.skullandbones.core.navigation.NavigationActivity
 import de.marxhendrik.skullandbones.root.navigation.Feature
 import de.marxhendrik.skullandbones.root.navigation.addFeature
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_root.*
 
-class MainActivity : AppCompatActivity(), NavigationActivity {
+class RootActivity : AppCompatActivity(), NavigationActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.activity_root)
         addFeature(Feature.MagnetSearch)
     }
 
