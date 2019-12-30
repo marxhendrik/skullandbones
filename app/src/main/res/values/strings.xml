@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Skull And Bones</string>
     <string name="title_magnetsearch">Magnet Search</string>
+    <string name="searchbox_hint">enter search query</string>
 </resources>

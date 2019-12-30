@@ -3,6 +3,7 @@ package de.marxhendrik.skullandbones.ui
 import android.os.Bundle
 import android.view.ViewGroup
 import com.badoo.ribs.android.RibActivity
+import com.badoo.ribs.android.Text
 import com.badoo.ribs.core.Node
 import de.marxhendrik.skullandbones.R
 import de.marxhendrik.skullandbones.core.navigation.NavigationActivity
@@ -27,7 +28,9 @@ class RootActivity : RibActivity(), NavigationActivity {
 
         return SearchBuilder(
             // TODO provide dependencies from a Module
-            object : Search.Dependency {}
+            object : Search.Dependency {
+                override fun config() = Search.Config(Text.Resource(R.string.searchbox_hint))
+            }
 
         ).build(savedInstanceState)
     }
