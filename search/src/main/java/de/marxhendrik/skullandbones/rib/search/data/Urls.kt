@@ -1,4 +1,4 @@
-package de.marxhendrik.skullandbones.search.data
+package de.marxhendrik.skullandbones.rib.search.data
 
 
 object Urls {

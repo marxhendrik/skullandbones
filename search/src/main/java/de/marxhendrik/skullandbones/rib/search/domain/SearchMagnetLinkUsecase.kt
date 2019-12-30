@@ -1,8 +1,8 @@
-package de.marxhendrik.skullandbones.search.domain
+package de.marxhendrik.skullandbones.rib.search.domain
 
 import de.marxhendrik.skullandbones.core.base.usecase.UseCase
-import de.marxhendrik.skullandbones.search.data.model.SearchResult
-import de.marxhendrik.skullandbones.search.data.repo.MagnetSearchRepo
+import de.marxhendrik.skullandbones.rib.search.data.model.SearchResult
+import de.marxhendrik.skullandbones.rib.search.data.repo.MagnetSearchRepo
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlin.coroutines.resume

@@ -1,7 +1,7 @@
-package de.marxhendrik.skullandbones.search.data.api
+package de.marxhendrik.skullandbones.rib.search.data.api
 
-import de.marxhendrik.skullandbones.search.data.Urls
-import de.marxhendrik.skullandbones.search.data.model.SearchResult
+import de.marxhendrik.skullandbones.rib.search.data.Urls
+import de.marxhendrik.skullandbones.rib.search.data.model.SearchResult
 import org.jsoup.nodes.Element
 import timber.log.Timber
 
