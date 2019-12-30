@@ -53,6 +53,9 @@ abstract class SearchModule {
         @JvmStatic
         internal fun router(savedInstanceState: Bundle?) = SearchRouter(savedInstanceState)
 
+        @Provides
+        @JvmStatic
+        internal fun customization() = Search.Customisation()
     }
 
 }
