@@ -1,4 +1,4 @@
-apply plugin: 'com.android.dynamic-feature'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
@@ -7,10 +7,10 @@ apply from: '../repositories.gradle'
 apply from: '../testDependencies.gradle'
 apply from: '../dependencies.gradle'
 apply from: '../project-config.gradle'
+apply from: '../ribs.gradle'
 
 
 dependencies {
-    implementation project(':app')
     implementation project(':core')
     implementation 'org.jsoup:jsoup:1.12.1'
 }
