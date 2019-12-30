@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class SearchInteractor(
     savedInstanceState: Bundle?,
-    private val config: Search.Config,
+    config: Search.Config,
     disposable: CompositeDisposable = CompositeDisposable()
 ) : Interactor<SearchInputView>(savedInstanceState, disposable) {
 

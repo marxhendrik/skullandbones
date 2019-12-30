@@ -44,7 +44,10 @@ abstract class SearchModule {
 
         @Provides
         @JvmStatic
-        internal fun interactor(savedInstanceState: Bundle?) = SearchInteractor(savedInstanceState)
+        internal fun interactor(
+            savedInstanceState: Bundle?,
+            config: Search.Config
+        ) = SearchInteractor(savedInstanceState, config)
 
         @Provides
         @JvmStatic
