@@ -1,4 +1,4 @@
-package de.marxhendrik.skullandbones.rib.search
+package de.marxhendrik.skullandbones.rib.search.builder
 
 import com.badoo.ribs.core.Rib
 

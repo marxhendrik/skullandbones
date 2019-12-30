@@ -6,8 +6,8 @@ import com.badoo.ribs.android.RibActivity
 import com.badoo.ribs.core.Node
 import de.marxhendrik.skullandbones.R
 import de.marxhendrik.skullandbones.core.navigation.NavigationActivity
-import de.marxhendrik.skullandbones.rib.search.Search
-import de.marxhendrik.skullandbones.rib.search.SearchBuilder
+import de.marxhendrik.skullandbones.rib.search.builder.Search
+import de.marxhendrik.skullandbones.rib.search.builder.SearchBuilder
 import de.marxhendrik.skullandbones.root.navigation.Feature
 import de.marxhendrik.skullandbones.root.navigation.addFeature
 import kotlinx.android.synthetic.main.activity_root.*
