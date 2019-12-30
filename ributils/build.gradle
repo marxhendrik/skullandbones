@@ -1,19 +1,9 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
-apply from: '../dagger.gradle'
 apply from: '../repositories.gradle'
 apply from: '../testDependencies.gradle'
 apply from: '../dependencies.gradle'
 apply from: '../project-config.gradle'
 apply from: '../ribs.gradle'
-
-
-dependencies {
-    implementation project(':core')
-    implementation project(':ributils')
-
-    implementation 'org.jsoup:jsoup:1.12.1'
-
-}

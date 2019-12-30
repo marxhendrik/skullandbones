@@ -1,7 +1,5 @@
 package de.marxhendrik.skullandbones.rib.search.builder
 
-import android.os.Bundle
-import com.badoo.ribs.core.Interactor
 import com.badoo.ribs.core.Node
 import dagger.Module
 import dagger.Provides
@@ -10,6 +8,7 @@ import de.marxhendrik.skullandbones.rib.search.data.api.JsoupApiBridge
 import de.marxhendrik.skullandbones.rib.search.data.api.MagnetSearchApi
 import de.marxhendrik.skullandbones.rib.search.data.repo.MagnetSearchRepo
 import de.marxhendrik.skullandbones.rib.search.domain.SearchMagnetLinkUsecase
+import de.marxhendrik.skullandbones.ributils.NoopNode
 
 @Module
 abstract class SearchModule {
@@ -27,24 +26,7 @@ abstract class SearchModule {
 
         @Provides
         @JvmStatic
-        internal fun node(
-            savedInstanceState: Bundle?,
-            interactor: Interactor<Nothing>
-        ): Node<Nothing> = Node(
-            savedInstanceState = savedInstanceState,
-            identifier = object : Search {},
-            viewFactory = null,
-            router = null,
-            interactor = interactor
-        )
-
-        @Provides
-        @JvmStatic
-        internal fun interactor(savedInstanceState: Bundle?) =
-            object : Interactor<Nothing>(
-                savedInstanceState = savedInstanceState,
-                disposables = null
-            ) {}
+        internal fun node(): Node<Nothing> = NoopNode.create()
 
     }
 
