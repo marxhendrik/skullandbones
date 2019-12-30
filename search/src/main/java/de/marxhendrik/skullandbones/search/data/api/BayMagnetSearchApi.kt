@@ -1,12 +1,13 @@
-package de.marxhendrik.skullandbones.magnetsearch.data.api
+package de.marxhendrik.skullandbones.search.data.api
 
-import de.marxhendrik.skullandbones.magnetsearch.data.Urls
-import de.marxhendrik.skullandbones.magnetsearch.data.model.SearchResult
+import de.marxhendrik.skullandbones.search.data.Urls
+import de.marxhendrik.skullandbones.search.data.model.SearchResult
 import org.jsoup.nodes.Element
 import timber.log.Timber
 
 //FIXME extract constants
-class BayMagnetSearchApi(private val jsoup: JsoupApiBridge) : MagnetSearchApi {
+class BayMagnetSearchApi(private val jsoup: JsoupApiBridge) :
+    MagnetSearchApi {
 
     override fun search(query: String): List<SearchResult> {
         Timber.i("try call jsoup")
@@ -19,7 +20,12 @@ class BayMagnetSearchApi(private val jsoup: JsoupApiBridge) : MagnetSearchApi {
     }
 
     private fun extractResult(it: Element) =
-        getDivHref(it).zip(getLinks(it)).map { pair -> SearchResult(pair.first, pair.second) }
+        getDivHref(it).zip(getLinks(it)).map { pair ->
+            SearchResult(
+                pair.first,
+                pair.second
+            )
+        }
 
     private fun getLinks(it: Element) = it.select("a[href*=magnet:]").map { it.attr("href") }.asSequence()
 

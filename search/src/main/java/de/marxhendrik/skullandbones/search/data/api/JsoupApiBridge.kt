@@ -1,4 +1,4 @@
-package de.marxhendrik.skullandbones.magnetsearch.data.api
+package de.marxhendrik.skullandbones.search.data.api
 
 import org.jsoup.Jsoup
 import javax.inject.Inject

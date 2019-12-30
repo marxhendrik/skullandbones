@@ -1,4 +1,4 @@
-package de.marxhendrik.skullandbones.magnetsearch.data
+package de.marxhendrik.skullandbones.search.data
 
 
 object Urls {

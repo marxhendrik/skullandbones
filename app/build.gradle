@@ -6,6 +6,7 @@ apply from: '../repositories.gradle'
 apply from: '../testDependencies.gradle'
 apply from: '../dependencies.gradle'
 apply from: '../project-config.gradle'
+apply from: '../ribs.gradle'
 
 android {
 
@@ -16,7 +17,6 @@ android {
         }
     }
 
-
     dynamicFeatures = [":magnetsearch"]
 }
 
@@ -26,4 +26,5 @@ androidExtensions {
 
 dependencies {
     implementation project(":core")
+    implementation project(":search")
 }
