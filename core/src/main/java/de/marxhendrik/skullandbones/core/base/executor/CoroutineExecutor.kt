@@ -14,7 +14,6 @@ class CoroutineExecutor : Executor {
     private val ioScope = CoroutineScope(Dispatchers.IO + job)
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
-
     override fun <T, R> execute(
         useCase: UseCase<T, R>,
         param: T,

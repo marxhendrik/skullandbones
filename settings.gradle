@@ -1,2 +1,2 @@
-include ':app', ':magnetsearch', ':core'
+include ':app', ':magnetsearch', ':search', ':core'
 rootProject.name = 'Skull And Bones'
