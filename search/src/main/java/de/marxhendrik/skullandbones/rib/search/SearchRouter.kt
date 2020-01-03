@@ -25,11 +25,15 @@ class SearchRouter(
         object Empty : Configuration()
     }
 
-    override fun resolveConfiguration(configuration: Configuration): RoutingAction<SearchInputView> =
-        when (configuration) {
+    override fun resolveConfiguration(configuration: Configuration): RoutingAction<SearchInputView> {
+        return RoutingAction.noop()
+
+        return when (configuration) {
             is Configuration.SearchResultList -> attach {
                 TODO("create resultlist rib")
             }
             Empty -> TODO("create empty Rib")
         }
+    }
+
 }

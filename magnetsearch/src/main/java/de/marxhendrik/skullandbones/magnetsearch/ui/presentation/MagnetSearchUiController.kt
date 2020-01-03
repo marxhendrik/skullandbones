@@ -39,8 +39,8 @@ class MagnetSearchUiController(
         get() = uiModel.map { it.results }
 
     private fun request(query: String) {
-        execute(searchUsecase, query, { result ->
-            result.on(
+        execute(searchUsecase, query, {
+            on(
                 failure = { Timber.e(it, "error") },
                 success = { updateData(it) }
             )

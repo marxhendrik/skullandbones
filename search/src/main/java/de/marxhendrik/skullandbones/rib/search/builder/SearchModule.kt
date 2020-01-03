@@ -4,13 +4,15 @@ import android.os.Bundle
 import com.badoo.ribs.core.Node
 import dagger.Module
 import dagger.Provides
+import de.marxhendrik.skullandbones.core.base.executor.CoroutineExecutor
+import de.marxhendrik.skullandbones.core.base.executor.Executor
 import de.marxhendrik.skullandbones.rib.search.SearchInteractor
 import de.marxhendrik.skullandbones.rib.search.SearchRouter
 import de.marxhendrik.skullandbones.rib.search.data.api.BayMagnetSearchApi
 import de.marxhendrik.skullandbones.rib.search.data.api.JsoupApiBridge
 import de.marxhendrik.skullandbones.rib.search.data.api.MagnetSearchApi
 import de.marxhendrik.skullandbones.rib.search.data.repo.MagnetSearchRepo
-import de.marxhendrik.skullandbones.rib.search.domain.SearchMagnetLinkUsecase
+import de.marxhendrik.skullandbones.rib.search.domain.SearchUsecase
 import de.marxhendrik.skullandbones.rib.search.ui.SearchInputView
 
 @Module
@@ -21,7 +23,7 @@ abstract class SearchModule {
 
         @Provides
         @JvmStatic
-        internal fun magnetSearchUseCase(repo: MagnetSearchRepo) = SearchMagnetLinkUsecase(repo)
+        internal fun magnetSearchUseCase(repo: MagnetSearchRepo) = SearchUsecase(repo)
 
         @Provides
         @JvmStatic
@@ -46,8 +48,10 @@ abstract class SearchModule {
         @JvmStatic
         internal fun interactor(
             savedInstanceState: Bundle?,
-            config: Search.Config
-        ) = SearchInteractor(savedInstanceState, config)
+            config: Search.Config,
+            usecase: SearchUsecase,
+            executor: Executor
+        ) = SearchInteractor(savedInstanceState, config, usecase, executor)
 
         @Provides
         @JvmStatic
@@ -56,6 +60,11 @@ abstract class SearchModule {
         @Provides
         @JvmStatic
         internal fun customization() = Search.Customisation()
+
+        @Provides
+        @JvmStatic
+        fun executor(): Executor = CoroutineExecutor()
+
     }
 
 }

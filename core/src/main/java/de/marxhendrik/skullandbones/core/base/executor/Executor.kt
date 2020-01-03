@@ -8,6 +8,6 @@ interface Executor {
     fun <T, R> execute(
         useCase: UseCase<T, R>,
         param: T,
-        callback: (Either<Throwable, R>) -> Unit
+        callback: (Either<Throwable, R>).() -> Unit
     )
 }
