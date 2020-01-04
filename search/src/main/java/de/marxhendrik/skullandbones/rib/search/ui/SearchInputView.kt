@@ -2,6 +2,7 @@ package de.marxhendrik.skullandbones.rib.search.ui
 
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +14,8 @@ import com.badoo.ribs.customisation.inflate
 import com.jakewharton.rxrelay2.PublishRelay
 import de.marxhendrik.skullandbones.rib.search.ui.SearchInputView.Event.Search
 import de.marxhendrik.skullandbones.rib.search.ui.resultlist.ResultListAdapter
-import de.marxhendrik.skullandbones.util.textListener
 import de.marxhendrik.skullandbones.search.R
+import de.marxhendrik.skullandbones.util.textListener
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Consumer
 import timber.log.Timber
@@ -93,7 +94,7 @@ class SearchInputViewImpl(
     override fun accept(vm: SearchInputView.ViewModel?) {
         searchBox.queryHint = vm?.hintText?.resolve()
         vm?.error?.let {
-            Timber.e(it)
+            Toast.makeText(androidView.context, it.message, Toast.LENGTH_LONG).show()
         }
 
         Timber.i("results: ${vm?.resultItems}")

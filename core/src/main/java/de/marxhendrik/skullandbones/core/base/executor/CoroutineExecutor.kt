@@ -20,13 +20,17 @@ class CoroutineExecutor : Executor {
         callback: (Either<Throwable, R>) -> Unit
     ) {
         ioScope.launch {
-            try {
-                val result = useCase(param)
-                uiScope.launch { callback(Either.Right(result)) }
-            } catch (t: Throwable) {
-                callback(Either.Left(t))
-            }
+            val result =
+                try {
+                    Either.Right(useCase(param))
+                } catch (t: Throwable) {
+                    Timber.e(t)
+                    Either.Left(t)
+                }
+
+            uiScope.launch { callback(result) }
         }
+
     }
 
 
