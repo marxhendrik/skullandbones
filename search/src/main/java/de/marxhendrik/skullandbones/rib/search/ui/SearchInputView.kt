@@ -2,7 +2,6 @@ package de.marxhendrik.skullandbones.rib.search.ui
 
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -93,7 +92,9 @@ class SearchInputViewImpl(
 
     override fun accept(vm: SearchInputView.ViewModel?) {
         searchBox.queryHint = vm?.hintText?.resolve()
-        vm?.error?.let { Toast.makeText(androidView.context, it.message, Toast.LENGTH_LONG) }
+        vm?.error?.let {
+            Timber.e(it)
+        }
 
         Timber.i("results: ${vm?.resultItems}")
 
