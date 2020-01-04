@@ -28,6 +28,8 @@ class SearchInteractor(
 
     private val searchResultToViewModel = SearchResultToViewModel(config)
     private val initialState = searchResultToViewModel(Either.Right(emptyList()))
+
+    // TODO usecase
     private val send = Consumer<String> {
         activityStarter.startActivity {
             Intent(Intent.ACTION_VIEW, Uri.parse(it))

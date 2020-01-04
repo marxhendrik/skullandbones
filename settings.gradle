@@ -1,7 +1,6 @@
 rootProject.name = 'Skull And Bones'
 
 include ':app',
-        ':magnetsearch',
         ':search',
         ':core',
         ':ributils'
