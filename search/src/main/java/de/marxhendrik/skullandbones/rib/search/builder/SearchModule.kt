@@ -57,9 +57,8 @@ abstract class SearchModule {
         internal fun interactor(
             savedInstanceState: Bundle?,
             config: Search.Config,
-            usecase: SearchUsecase,
-            executor: Executor
-        ) = SearchInteractor(savedInstanceState, config, usecase, executor)
+            usecase: RxSearchUsecase
+        ) = SearchInteractor(savedInstanceState, config, usecase)
 
         @Provides
         @JvmStatic
