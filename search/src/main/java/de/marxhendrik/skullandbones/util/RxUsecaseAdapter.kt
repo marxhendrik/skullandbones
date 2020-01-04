@@ -1,4 +1,4 @@
-package de.marxhendrik.skullandbones.rib.search.util
+package de.marxhendrik.skullandbones.util
 
 import com.jakewharton.rxrelay2.PublishRelay
 import de.marxhendrik.skullandbones.core.base.Either

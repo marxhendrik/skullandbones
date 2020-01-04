@@ -1,4 +1,4 @@
-package de.marxhendrik.skullandbones.rib.search.util
+package de.marxhendrik.skullandbones.util
 
 import io.reactivex.ObservableSource
 import io.reactivex.disposables.Disposable

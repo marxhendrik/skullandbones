@@ -4,7 +4,7 @@ import de.marxhendrik.skullandbones.core.base.executor.Executor
 import de.marxhendrik.skullandbones.core.base.usecase.UseCase
 import de.marxhendrik.skullandbones.rib.search.data.model.SearchResult
 import de.marxhendrik.skullandbones.rib.search.data.repo.MagnetSearchRepo
-import de.marxhendrik.skullandbones.rib.search.util.RxUsecaseAdapter
+import de.marxhendrik.skullandbones.util.RxUsecaseAdapter
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlin.coroutines.resume

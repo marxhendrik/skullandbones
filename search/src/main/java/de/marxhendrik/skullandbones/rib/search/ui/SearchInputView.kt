@@ -13,7 +13,7 @@ import com.badoo.ribs.customisation.inflate
 import com.jakewharton.rxrelay2.PublishRelay
 import de.marxhendrik.skullandbones.rib.search.ui.SearchInputView.Event.Search
 import de.marxhendrik.skullandbones.rib.search.ui.resultlist.ResultListAdapter
-import de.marxhendrik.skullandbones.rib.search.util.textListener
+import de.marxhendrik.skullandbones.util.textListener
 import de.marxhendrik.skullandbones.search.R
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Consumer
