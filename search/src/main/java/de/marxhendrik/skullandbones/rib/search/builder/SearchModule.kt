@@ -12,6 +12,7 @@ import de.marxhendrik.skullandbones.rib.search.data.api.BayMagnetSearchApi
 import de.marxhendrik.skullandbones.rib.search.data.api.JsoupApiBridge
 import de.marxhendrik.skullandbones.rib.search.data.api.MagnetSearchApi
 import de.marxhendrik.skullandbones.rib.search.data.repo.MagnetSearchRepo
+import de.marxhendrik.skullandbones.rib.search.domain.RxSearchUsecase
 import de.marxhendrik.skullandbones.rib.search.domain.SearchUsecase
 import de.marxhendrik.skullandbones.rib.search.ui.SearchInputView
 
@@ -23,7 +24,14 @@ abstract class SearchModule {
 
         @Provides
         @JvmStatic
-        internal fun magnetSearchUseCase(repo: MagnetSearchRepo) = SearchUsecase(repo)
+        internal fun searchUseCase(repo: MagnetSearchRepo) = SearchUsecase(repo)
+
+        @Provides
+        @JvmStatic
+        internal fun rxSearchUseCase(
+            searchUsecase: SearchUsecase,
+            executor: Executor
+        ) = RxSearchUsecase(searchUsecase, executor)
 
         @Provides
         @JvmStatic
