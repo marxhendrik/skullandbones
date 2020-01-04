@@ -10,4 +10,6 @@ interface Executor {
         param: T,
         callback: (Either<Throwable, R>).() -> Unit
     )
+
+    fun isCleared(): Boolean
 }

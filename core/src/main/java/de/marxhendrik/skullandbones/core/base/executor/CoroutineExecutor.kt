@@ -34,4 +34,6 @@ class CoroutineExecutor : Executor {
         Timber.i("onCleared")
         job.cancel()
     }
+
+    override fun isCleared() = job.isCancelled
 }
