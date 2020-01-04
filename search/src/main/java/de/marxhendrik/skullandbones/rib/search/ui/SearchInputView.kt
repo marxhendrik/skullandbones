@@ -10,6 +10,7 @@ import com.badoo.ribs.core.view.ViewFactory
 import com.badoo.ribs.customisation.inflate
 import com.jakewharton.rxrelay2.PublishRelay
 import de.marxhendrik.skullandbones.rib.search.ui.SearchInputView.Event.Search
+import de.marxhendrik.skullandbones.rib.search.util.textListener
 import de.marxhendrik.skullandbones.search.R
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Consumer
@@ -69,13 +70,3 @@ class SearchInputViewImpl(
     private fun Text?.resolve(): String? = this?.resolve(androidView.context)
 
 }
-
-
-fun textListener(callback: (String) -> Unit) =
-    object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(q: String) = true
-        override fun onQueryTextChange(newText: String): Boolean {
-            callback(newText)
-            return true
-        }
-    }
