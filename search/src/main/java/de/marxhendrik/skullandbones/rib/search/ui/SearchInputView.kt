@@ -4,12 +4,16 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.badoo.ribs.android.Text
 import com.badoo.ribs.core.view.RibView
 import com.badoo.ribs.core.view.ViewFactory
 import com.badoo.ribs.customisation.inflate
 import com.jakewharton.rxrelay2.PublishRelay
 import de.marxhendrik.skullandbones.rib.search.ui.SearchInputView.Event.Search
+import de.marxhendrik.skullandbones.rib.search.ui.resultlist.ResultListAdapter
 import de.marxhendrik.skullandbones.rib.search.util.textListener
 import de.marxhendrik.skullandbones.search.R
 import io.reactivex.ObservableSource
@@ -27,10 +31,14 @@ interface SearchInputView :
         val error: Throwable? = null
     )
 
-    data class SearchResult(val itemTitle: String)
+    data class SearchResult(
+        val itemTitle: String,
+        val link: String
+    )
 
     sealed class Event {
         data class Search(val query: String) : Event()
+        data class Selected(val link: String) : Event()
     }
 
     interface Factory : ViewFactory<Nothing?, SearchInputView>
@@ -38,6 +46,7 @@ interface SearchInputView :
 
 class SearchInputViewImpl(
     override val androidView: ViewGroup,
+    private val adapter: ResultListAdapter = ResultListAdapter(),
     private val events: PublishRelay<SearchInputView.Event> = PublishRelay.create()
 ) : SearchInputView,
     ObservableSource<SearchInputView.Event> by events {
@@ -51,6 +60,7 @@ class SearchInputViewImpl(
     }
 
     private val searchBox: SearchView = androidView.findViewById(R.id.searchView)
+    private val list: RecyclerView = androidView.findViewById(R.id.list)
 
     init {
         searchBox.setIconifiedByDefault(false)
@@ -58,6 +68,27 @@ class SearchInputViewImpl(
         searchBox.setOnQueryTextListener(textListener {
             events.accept(Search(it))
         })
+
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+
+        val layoutManager = LinearLayoutManager(androidView.context)
+        list.layoutManager = layoutManager
+        list.addItemDecoration(
+            DividerItemDecoration(
+                androidView.context,
+                layoutManager.orientation
+            )
+        )
+        list.adapter = adapter
+
+        adapter.setOnItemClickListener {
+            Timber.i("clicked: ${it.link}!")
+            events.accept(SearchInputView.Event.Selected(it.link))
+        }
+
     }
 
     override fun accept(vm: SearchInputView.ViewModel?) {
@@ -65,6 +96,8 @@ class SearchInputViewImpl(
         vm?.error?.let { Toast.makeText(androidView.context, it.message, Toast.LENGTH_LONG) }
 
         Timber.i("results: ${vm?.resultItems}")
+
+        adapter.setData(vm?.resultItems ?: emptyList())
     }
 
     private fun Text?.resolve(): String? = this?.resolve(androidView.context)

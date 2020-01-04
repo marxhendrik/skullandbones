@@ -1,6 +1,7 @@
 package de.marxhendrik.skullandbones.rib.search.builder
 
 import android.os.Bundle
+import com.badoo.ribs.android.ActivityStarter
 import com.badoo.ribs.core.Node
 import dagger.Module
 import dagger.Provides
@@ -57,8 +58,9 @@ abstract class SearchModule {
         internal fun interactor(
             savedInstanceState: Bundle?,
             config: Search.Config,
-            usecase: RxSearchUsecase
-        ) = SearchInteractor(savedInstanceState, config, usecase)
+            usecase: RxSearchUsecase,
+            activityStarter: ActivityStarter
+        ) = SearchInteractor(savedInstanceState, config, usecase, activityStarter)
 
         @Provides
         @JvmStatic

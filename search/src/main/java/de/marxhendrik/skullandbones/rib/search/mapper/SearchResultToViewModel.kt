@@ -14,7 +14,7 @@ class SearchResultToViewModel(
         when (response) {
             is Either.Right -> ViewModel(
                 config.hintText,
-                response.value.map { SearchInputView.SearchResult(it.title) }
+                response.value.map { SearchInputView.SearchResult(it.title, it.magnetLink) }
             )
             is Either.Left -> ViewModel(
                 config.hintText,

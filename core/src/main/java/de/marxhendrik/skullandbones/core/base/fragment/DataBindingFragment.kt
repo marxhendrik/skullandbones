@@ -19,10 +19,10 @@ abstract class DataBindingFragment<I> : BaseFragment() {
 
     protected open fun bind(binding: ViewDataBinding) {
         val bindingData = getBindingData()
-        binding.setVariable(bindingData.id, bindingData.Item)
+        binding.setVariable(bindingData.id, bindingData.item)
     }
 
     abstract fun getBindingData(): BindingData<I>
 
-    data class BindingData<T>(val id: Int, val Item: T)
+    data class BindingData<T>(val id: Int, val item: T)
 }
