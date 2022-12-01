@@ -1,3 +1,7 @@
+Old and discontinued ... main reason is that I figured out that the DS download station app has a torrent search built-in. 
+Technology is outdated and I think it has memory leaks.
+
+
 # Skull And Bones
 
 This is for Searching Torrents on a certain website. I will not provide any third party links to torrent sites in the
